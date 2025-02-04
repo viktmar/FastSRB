@@ -1,0 +1,4019 @@
+I.6.2a:
+    difficulty: hard
+    name: gaussian_std
+    raw: exp(-theta ^ 2 / 2) / sqrt(2 * pi)
+    prp: exp(neg(v1 ^ 2) / 2) / sqrt(2 * 3.1415926535897)
+    complexity:
+    vars:
+        v1:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: f
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+I.6.2:
+    difficulty: hard
+    name: gaussian
+    raw: exp(-(theta / sigma) ^ 2 / 2) / (sqrt(2 * pi) * sigma)
+    prp: exp(neg((v1 / v2) ^ 2) / 2) / (sqrt(2 * 3.1415926535897) * v2)
+    complexity:
+    vars:
+        v1:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: sigma
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v0:
+          name: f
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+        - v2 != 0
+I.6.2b:
+    difficulty: hard
+    name: gaussian_shifted
+    raw: exp(-((theta - theta1) / sigma) ^ 2 / 2) / (sqrt(2 * pi) * sigma)
+    prp: exp(neg(((v1 - v2) / v3) ^ 2) / 2) / (sqrt(2 * 3.1415926535897) * v3)
+    complexity:
+    vars:
+        v1:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: theta1
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: sigma
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v0:
+          name: f
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+        - v3 != 0
+I.8.14:
+    difficulty: medium
+    name: euclidean_2d
+    raw: sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
+    prp: sqrt((v1 - v2) ^ 2 + (v3 - v4) ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: x2
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: x1
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: y2
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v4:
+          name: y1
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: d
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+    constraints:
+I.9.18:
+    difficulty: hard
+    name: newton_gravity
+    raw: 6.6743e-11 * m1 * m2 / ((x2 - x1) ^ 2 + (y2 - y1) ^ 2 + (z2 - z1) ^ 2)
+    prp: 6.6743e-11 * v1 * v2 / ((v3 - v4) ^ 2 + (v5 - v6) ^ 2 + (v7 - v8) ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: m1
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0, 1.0e3]
+          sample_type: [log, pos]
+        v2:
+          name: m2
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0, 1.0e3]
+          sample_type: [log, pos]
+        v3:
+          name: x2
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e1]
+          sample_type: [log, pos_neg]
+        v4:
+          name: x1
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e1]
+          sample_type: [log, pos_neg]
+        v5:
+          name: y2
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e1]
+          sample_type: [log, pos_neg]
+        v6:
+          name: y1
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e1]
+          sample_type: [log, pos_neg]
+        v7:
+          name: z2
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e1]
+          sample_type: [log, pos_neg]
+        v8:
+          name: z1
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: F
+          type: (float)
+          units: [1, -2, 1, 0, 0]
+    constraints:
+        - (v3 - v4) ^ 2 + (v5 - v6) ^ 2 + (v7 - v8) ^ 2 != 0
+I.10.7:
+    difficulty: medium
+    name: relativistic_mass
+    raw: m_0 / sqrt(1 - v ^ 2 / c ^ 2)
+    prp: v1 / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: m_0
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: v
+          type: (float, positive)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e5, 1.0e8]
+          sample_type: [log, pos]
+        v0:
+          name: m
+          type: (float)
+          units: [0, 0, 1, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - 1 - v2 ^ 2 / 2.99792458e8 ^ 2 > 0
+I.11.19:
+    difficulty: medium
+    name: dot_product
+    raw: x1 * y1 + x2 * y2 + x3 * y3
+    prp: v1 * v2 + v3 * v4 + v5 * v6
+    complexity:
+    vars:
+        v1:
+          name: x1
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: y1
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: x2
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v4:
+          name: y2
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v5:
+          name: x3
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v6:
+          name: y3
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: A
+          type: (float)
+          units: [2, 0, 0, 0, 0]
+    constraints:
+I.12.1:
+    difficulty: easy
+    name: magnetic_moment
+    raw: mu * Nn
+    prp: v1 * v2
+    complexity:
+    vars:
+        v1:
+          name: mu
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v2:
+          name: Nn
+          type: (float, positive)
+          units: [1, -2, 1, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v0:
+          name: F
+          type: (float)
+          units: [1, -2, 1, 0, 0]
+    constraints:
+I.12.2:
+    difficulty: medium
+    name: coulomb_force
+    raw: q1 * q2 * r / (4 * pi * 8.854e-12 * r ^ 3)
+    prp: v1 * v2 * v3 / (4 * 3.1415926535897 * 8.854e-12 * v3 ^ 3)
+    complexity:
+    vars:
+        v1:
+          name: q1
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: q2
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v0:
+          name: F
+          type: (float)
+          units: [1, -2, 1, 0, 0]
+    constraints:
+        - v3 != 0
+I.12.4:
+    difficulty: easy
+    name: electric_field_point
+    raw: q1 * r / (4 * pi * 8.854e-12 * r ^ 3)
+    prp: v1 * v2 / (4 * 3.1415926535897 * 8.854e-12 * v2 ^ 3)
+    complexity:
+    vars:
+        v1:
+          name: q1
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v0:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+    constraints:
+        - v2 != 0
+I.12.5:
+    difficulty: easy
+    name: electric_force
+    raw: q2 * Ef
+    prp: v1 * v2
+    complexity:
+    vars:
+        v1:
+          name: q2
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: F
+          type: (float)
+          units: [1, -2, 1, 0, 0]
+    constraints:
+I.12.11:
+    difficulty: medium
+    name: lorentz_force
+    raw: q * (Ef + B * v * sin(theta))
+    prp: v1 * (v2 + v3 * v4 * sin(v5))
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v3:
+          name: B
+          type: (float, positive)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v4:
+          name: v
+          type: (float, positive)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v5:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0.0, pi / 2]
+          sample_type: [uni, pos]
+        v0:
+          name: F
+          type: (float)
+          units: [1, -2, 1, 0, 0]
+    constraints:
+I.13.4:
+    difficulty: medium
+    name: kinetic_energy
+    raw: 1 / 2 * m * (v ^ 2 + u ^ 2 + w ^ 2)
+    prp: 1 / 2 * v1 * (v2 ^ 2 + v3 ^ 2 + v4 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: v
+          type: (float,)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: u
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v4:
+          name: w
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: K
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+I.13.12:
+    difficulty: medium
+    name: gravitational_potential
+    raw: G * m1 * m2 * (1 / r2 - 1 / r1)
+    prp: 6.67430e-11 * v1 * v2 * (1 / v3 - 1 / v4)
+    complexity:
+    vars:
+        v1:
+          name: m1
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v2:
+          name: m2
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v3:
+          name: r2
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v4:
+          name: r1
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v0:
+          name: U
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constants:
+        G:
+          name: gravitational constant
+          value: 6.67430e-11
+          unit:
+    constraints:
+        - v3 != 0
+        - v4 != 0
+I.14.3:
+    difficulty: easy
+    name: earth_gravitational_potential
+    raw: g * m * z
+    prp: 9.80665 * v1 * v2
+    complexity:
+    vars:
+        v1:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v2:
+          name: z
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos_neg]
+        v0:
+          name: U
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constants:
+        g:
+          name: gravitational acceleration
+          value: 9.80665
+          unit:
+    constraints:
+I.14.4:
+    difficulty: easy
+    name: spring_potential
+    raw: 1 / 2 * k_spring * x ^ 2
+    prp: 1 / 2 * v1 * v2 ^ 2
+    complexity:
+    vars:
+        v1:
+          name: k_spring
+          type: (float, positive)
+          units: [0, -2, 1, 0, 0]
+          sample_range: [1.0e2, 1.0e4]
+          sample_type: [log, pos]
+        v2:
+          name: x
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos_neg]
+        v0:
+          name: U
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+I.15.1:
+    difficulty: medium
+    name: relativistic_momentum
+    raw: m_0 * v / sqrt(1 - v ^ 2 / c ^ 2)
+    prp: v1 * v2 / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: m_0
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v2:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e5, 1.0e7]
+          sample_type: [log, pos_neg]
+        v0:
+          name: p
+          type: (float)
+          units: [1, -1, 1, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - 1 - v2 ^ 2 / 2.99792458e8 ^ 2 > 0
+I.15.3t:
+    difficulty: hard
+    name: lorentz_time
+    raw: (t - u * x / c ^ 2) / sqrt(1 - u ^ 2 / c ^ 2)
+    prp: (v1 - v2 * v3 / 2.99792458e8 ^ 2) / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: t
+          type: (float, positive)
+          units: [0, 1, 0, 0, 0]
+          sample_range: [1.0e-6, 1.0e-4]
+          sample_type: [log, pos]
+        v2:
+          name: u
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e5, 1.0e7]
+          sample_type: [log, pos_neg]
+        v3:
+          name: x
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e2]
+          sample_type: [log, pos_neg]
+        v0:
+          name: t1
+          type: (float)
+          units: [0, 1, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - 1 - v2 ^ 2 / 2.99792458e8 ^ 2 >= 0
+I.15.3x:
+    difficulty: hard
+    name: lorentz_length
+    raw: (x - u * t) / sqrt(1 - u ^ 2 / c ^ 2)
+    prp: (v1 - v2 * v3) / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: x
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e2]
+          sample_type: [log, pos_neg]
+        v2:
+          name: u
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e6, 1.0e8]
+          sample_type: [log, pos_neg]
+        v3:
+          name: t
+          type: (float)
+          units: [0, 1, 0, 0, 0]
+          sample_range: [1.0e-6, 1.0e-4]
+          sample_type: [log, pos]
+        v0:
+          name: x1
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - 1 - v2 ^ 2 / 2.99792458e8 ^ 2 > 0
+I.16.6:
+    difficulty: medium
+    name: relativistic_velocity_addition
+    raw: (u + v) / (1 + u * v / c ^ 2)
+    prp: (v1 + v2) / (1 + v1 * v2 / 2.99792458e8 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: u
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e6, 1.0e8]
+          sample_type: [log, pos_neg]
+        v2:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e6, 1.0e8]
+          sample_type: [log, pos_neg]
+        v0:
+          name: v1
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - 1 + v1 * v2 != 0
+I.18.4:
+    difficulty: medium
+    name: center_of_mass
+    raw: (m1 * r1 + m2 * r2) / (m1 + m2)
+    prp: (v1 * v2 + v3 * v4) / (v1 + v3)
+    complexity:
+    vars:
+        v1:
+          name: m1
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: r1
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: m2
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v4:
+          name: r2
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: r
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+    constraints:
+        - v1 + v3 != 0
+I.18.12:
+    difficulty: easy
+    name: torque
+    raw: r * F * sin(theta)
+    prp: v1 * v2 * sin(v3)
+    complexity:
+    vars:
+        v1:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: F
+          type: (float)
+          units: [1, -2, 1, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v3:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: tau
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+I.18.14:
+    difficulty: easy
+    name: angular_momentum
+    raw: m * r * v * sin(theta)
+    prp: v1 * v2 * v3 * sin(v4)
+    complexity:
+    vars:
+        v1:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v3:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v4:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: L
+          type: (float)
+          units: [2, -1, 1, 0, 0]
+    constraints:
+I.24.6:
+    difficulty: medium
+    name: harmonic_energy
+    raw: 1 / 2 * m * (omega ^ 2 + omega_0 ^ 2) * 1 / 2 * x ^ 2
+    prp: 1 / 2 * v1 * (v2 ^ 2 + v3 ^ 2) * 1 / 2 * v4 ^ 2
+    complexity:
+    vars:
+        v1:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: omega
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: omega_0
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v4:
+          name: x
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+I.25.13:
+    difficulty: easy
+    name: capacitor_charge
+    raw: q / C
+    prp: v1 / v2
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-5, 1.0e-3]
+          sample_type: [log, pos_neg]
+        v2:
+          name: C
+          type: (float, positive)
+          units: [2, -2, 1, 0, -2]
+          sample_range: [1.0e-5, 1.0e-3]
+          sample_type: [log, pos]
+        v0:
+          name: Volt
+          type: (float)
+          units: [0, 0, 0, 0, 1]
+    constraints:
+        - v2 != 0
+I.26.2:
+    difficulty: easy
+    name: snells_law
+    feyn: arcsin(n*sin(theta2))
+    raw: sin(theta1) / sin(theta2)
+    prp: sin(v1) / sin(v2)
+    complexity:
+    vars:
+        v1:
+          name: theta1
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, pi / 2]
+          sample_type: [uni, pos]
+        v2:
+          name: theta2
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, pi / 2]
+          sample_type: [uni, pos]
+        v0:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+        - v1 * sin(v2) >= -pi /2
+        - v1 * sin(v2) <= pi/2
+I.27.6:
+    difficulty: easy
+    name: lens_formula
+    raw: 1 / (1 / d1 + n / d2)
+    prp: 1 / (1 / v1 + v2 / v3)
+    complexity:
+    vars:
+        v1:
+          name: d1
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v2:
+          name: n
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v3:
+          name: d2
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v0:
+          name: foc
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+    constraints:
+        - v1 != 0
+        - v3 != 0
+I.29.4:
+    difficulty: medium
+    name: normalized_frequency
+    raw: omega / c
+    prp: v1 / 2.99792458e8
+    complexity:
+    vars:
+        v1:
+          name: omega
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos]
+        v0:
+          name: k
+          type: (float)
+          units: [-1, 0, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+I.29.16:
+    difficulty: hard
+    name: law_of_cosines
+    raw: sqrt(x1 ^ 2 + x2 ^ 2 - 2 * x1 * x2 * cos(theta1 - theta2))
+    prp: sqrt(v1 ^ 2 + v2 ^ 2 - 2 * v1 * v2 * cos(v3 - v4))
+    complexity:
+    vars:
+        v1:
+          name: x1
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: x2
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v3:
+          name: theta1
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v4:
+          name: theta2
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: x
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+    constraints:
+I.30.3:
+    difficulty: hard
+    name: diffraction_intensity
+    raw: Int_0 * sin(n * theta / 2) ^ 2 / sin(theta / 2) ^ 2
+    prp: v1 * sin(v2 * v3 / 2) ^ 2 / sin(v3 / 2) ^ 2
+    complexity:
+    vars:
+        v1:
+          name: Int_0
+          type: (float, positive)
+          units: [0, -3, 1, 0, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v2:
+          name: n
+          type: (integer, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [int, pos]
+        v3:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [-2 * pi, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: Int
+          type: (float)
+          units: [0, -3, 1, 0, 0]
+    constraints:
+        - sin(v3 / 2) != 0
+I.30.5:
+    difficulty: easy
+    name: diffraction_wavelength
+    raw: lambda / (n * sin(theta))
+    prp: v1 / (v2 * sin(v3))
+    complexity:
+    vars:
+        v1:
+          name: lambda
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos]
+        v2:
+          name: n
+          type: (integer, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e2]
+          sample_type: [int, pos]
+        v3:
+          name: theta
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, pi / 2]
+          sample_type: [uni, pos]
+        v0:
+          name: d
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+    constraints:
+        - v2 != 0
+        - v3 != 0
+        - v3 != pi
+I.32.5:
+    difficulty: medium
+    name: radiation_reaction
+    raw: q ^ 2 * a ^ 2 / (6 * pi * 8.854e-12 * c ^ 3)
+    prp: v1 ^ 2 * v2 ^ 2 / (6 * 3.1415926535897 * 8.854e-12 * 2.99792458e8 ^ 3)
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: a
+          type: (float, positive)
+          units: [1, -2, 0, 0, 0]
+          sample_range: [1.0e5, 1.0e7]
+          sample_type: [log, pos]
+        v0:
+          name: Pwr
+          type: (float)
+          units: [2, -3, 1, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v3 != 0
+        - v4 != 0
+I.32.17:
+    difficulty: hard
+    name: dipole_radiation_power
+    raw: (1 / 2 * 8.854e-12 * c * Ef ^ 2) * (8 * pi * r ^ 2 / 3) * (omega ^ 4 / (omega ^ 2 - omega_0 ^ 2) ^ 2)
+    prp: (1 / 2 * 8.854e-12 * 2.99792458e8 * v1 ^ 2) * (8 * 3.1415926535897 * v2 ^ 2 / 3) * (v3 ^ 4 / (v3 ^ 2 - v4 ^ 2) ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v2:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v3:
+          name: omega
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos_neg]
+        v4:
+          name: omega_0
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos_neg]
+        v0:
+          name: Pwr
+          type: (float)
+          units: [2, -3, 1, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v3 ^ 2 - v4 ^ 2 != 0
+I.34.1:
+    difficulty: medium
+    name: relativistic_doppler_shift
+    raw: omega_0 / (1 - v / c)
+    prp: v1 / (1 - v2 / 2.99792458e8)
+    complexity:
+    vars:
+        v1:
+          name: omega_0
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos]
+        v2:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e5, 1.0e7]
+          sample_type: [log, pos_neg]
+        v0:
+          name: omega
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - 2.99792458e8 - v2 != 0
+I.34.8:
+    difficulty: medium
+    name: cyclotron_frequency
+    raw: q * v * B / p
+    prp: v1 * v2 * v3 / v4
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v2:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e5, 1.0e7]
+          sample_type: [log, pos_neg]
+        v3:
+          name: B
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v4:
+          name: p
+          type: (float)
+          units: [1, -1, 1, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos_neg]
+        v0:
+          name: omega
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+    constraints:
+        - v4 != 0
+I.34.14:
+    difficulty: hard
+    name: relativistic_frequency_shift
+    raw: (1 + v / c) / sqrt(1 - v ^ 2 / c ^ 2) * omega_0
+    prp: (1 + v1 / 2.99792458e8) / sqrt(1 - v1 ^ 2 / 2.99792458e8 ^ 2) * v2
+    complexity:
+    vars:
+        v1:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e6, 1.0e8]
+          sample_type: [log, pos_neg]
+        v2:
+          name: omega_0
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos]
+        v0:
+          name: omega
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - 2.99792458e8 ^ 2 - v1 ^ 2 > 0
+        - v2 != 0
+I.34.27:
+    difficulty: medium
+    name: photon_energy
+    raw: (6.626e-34 / (2 * pi)) * omega
+    prp: (6.626e-34 / (2 * 3.1415926535897)) * v1
+    complexity:
+    vars:
+        v1:
+          name: omega
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+I.37.4:
+    difficulty: hard
+    name: interference_intensity
+    raw: I1 + I2 + 2 * sqrt(I1 * I2) * cos(delta)
+    prp: v1 + v2 + 2 * sqrt(v1 * v2) * cos(v3)
+    complexity:
+    vars:
+        v1:
+          name: I1
+          type: (float, positive)
+          units: [0, -3, 1, 0, 0]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v2:
+          name: I2
+          type: (float, positive)
+          units: [0, -3, 1, 0, 0]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v3:
+          name: delta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: Int
+          type: (float)
+          units: [0, -3, 1, 0, 0]
+    constraints:
+        - v1*v2 >= 0
+I.38.12:
+    difficulty: medium
+    name: fine_structure
+    raw: 4 * pi * 8.854e-12 * (6.626e-34 / (2 * pi)) ^ 2 / (m * q ^ 2)
+    prp: 4 * 3.1415926535897 * 8.854e-12 * (6.626e-34 / (2 * 3.1415926535897)) ^ 2 / (v1 * v2 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-28, 1.0e-26]
+          sample_type: [log, pos]
+        v2:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos]
+        v0:
+          name: r
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+    constraints:
+        - v1 != 0
+        - v2 != 0
+I.39.1:
+    difficulty: medium
+    name: ideal_gas_internal_energy
+    raw: 3 / 2 * pr * V
+    prp: 3 / 2 * v1 * v2
+    complexity:
+    vars:
+        v1:
+          name: pr
+          type: (float, positive)
+          units: [-1, -2, 1, 0, 0]
+          sample_range: [1.0e4, 1.0e6]
+          sample_type: [log, pos]
+        v2:
+          name: V
+          type: (float, positive)
+          units: [3, 0, 0, 0, 0]
+          sample_range: [1.0e-5, 1.0e-3]
+          sample_type: [log, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+I.39.11:
+    difficulty: medium
+    name: polytropic_energy
+    raw: 1 / (gamma - 1) * pr * V
+    prp: 1 / (v1 - 1) * v2 * v3
+    complexity:
+    vars:
+        v1:
+          name: gamma
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1, 2]
+          sample_type: [uni, pos]
+        v2:
+          name: pr
+          type: (float, positive)
+          units: [-1, -2, 1, 0, 0]
+          sample_range: [1.0e4, 1.0e6]
+          sample_type: [log, pos]
+        v3:
+          name: V
+          type: (float, positive)
+          units: [3, 0, 0, 0, 0]
+          sample_range: [1.0e-5, 1.0e-3]
+          sample_type: [log, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+        - v1 - 1 != 0
+I.39.22:
+    difficulty: hard
+    name: ideal_gas_pressure
+    raw: n * 1.380649e-23 * T / V
+    prp: v1 * 1.380649e-23 * v2 / v3
+    complexity:
+    vars:
+        v1:
+          name: n
+          type: (integer, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v2:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v3:
+          name: V
+          type: (float, positive)
+          units: [3, 0, 0, 0, 0]
+          sample_range: [1.0e-5, 1.0e-3]
+          sample_type: [log, pos]
+        v0:
+          name: pr
+          type: (float)
+          units: [-1, -2, 1, 0, 0]
+    constraints:
+        - v3 != 0
+I.40.1:
+    difficulty: hard
+    name: barometric_formula
+    raw: n_0 * exp(-m * g * x / (1.380649e-23 * T))
+    prp: v1 * exp(neg(v2) * 9.80665 * v3 / (1.380649e-23 * v4))
+    complexity:
+    vars:
+        v1:
+          name: n_0
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e25, 1.0e27]
+          sample_type: [log, pos]
+        v2:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-24, 1.0e-22]
+          sample_type: [log, pos]
+        v3:
+          name: x
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos_neg]
+        v4:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: n
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constants:
+        g:
+          name: gravitational acceleration
+          value: 9.80665
+          unit:
+    constraints:
+        - v4 != 0
+I.41.16:
+    difficulty: hard
+    name: planck_radiation
+    raw: 6.626e-34 / (2 * pi) * omega ^ 3 / (pi ^ 2 * c ^ 2 * (exp((6.626e-34 / (2 * pi)) * omega / (1.380649e-23 * T)) - 1))
+    prp: 6.626e-34 / (2 * 3.1415926535897) * v1 ^ 3 / (3.1415926535897 ^ 2 * 2.99792458e8 ^ 2 * (exp((6.626e-34 / (2 * 3.1415926535897)) * v1 / (1.380649e-23 * v2)) - 1))
+    complexity:
+    vars:
+        v1:
+          name: omega
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: L_rad
+          type: (float)
+          units: [0, -2, 1, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v2 != 0
+I.43.16:
+    difficulty: easy
+    name: electron_drift_velocity
+    raw: mu_drift * q * Volt / d
+    prp: v1 * v2 * v3 / v4
+    complexity:
+    vars:
+        v1:
+          name: mu_drift
+          type: (float)
+          units: [0, -1, 1, 0, 0]
+          sample_range: [1.0e-6, 1.0e-4]
+          sample_type: [log, pos_neg]
+        v2:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v3:
+          name: Volt
+          type: (float)
+          units: [0, 0, 0, 0, 1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v4:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v0:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+    constraints:
+        - v4 != 0
+I.43.31:
+    difficulty: medium
+    name: thermal_mobility
+    raw: mob * 1.380649e-23 * T
+    prp: v1 * 1.380649e-23 * v2
+    complexity:
+    vars:
+        v1:
+          name: mob
+          type: (float, positive)
+          units: [0, 1, -1, 0, 0]
+          sample_range: [1.0e13, 1.0e15]
+          sample_type: [log, pos]
+        v2:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: D
+          type: (float)
+          units: [2, -1, 0, 0, 0]
+    constraints:
+I.43.43:
+    difficulty: medium
+    name: energy_per_volume
+    raw: 1 / (gamma - 1) * 1.380649e-23 * v / A
+    prp: 1 / (v1 - 1) * 1.380649e-23 * v2 / v3
+    complexity:
+    vars:
+        v1:
+          name: gamma
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1, 2]
+          sample_type: [uni, pos]
+        v2:
+          name: v
+          type: (float, positive)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e2, 1.0e4]
+          sample_type: [log, pos]
+        v3:
+          name: A
+          type: (float, positive)
+          units: [2, 0, 0, 0, 0]
+          sample_range: [1.0e-21, 1.0e-19]
+          sample_type: [log, pos]
+        v0:
+          name: kappa
+          type: (float)
+          units: [1, -3, 1, -1, 0]
+    constraints:
+        - v1 - 1 != 0
+        - v3 != 0
+I.44.4:
+    difficulty: hard
+    name: entropy_change
+    raw: n * 1.380649e-23 * T * ln(V2 / V1)
+    prp: v1 * 1.380649e-23 * v2 * log(v3 / v4)
+    complexity:
+    vars:
+        v1:
+          name: n
+          type: (integer -> real due to its order, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [10e24, 10e26]
+          sample_type: [log, pos]
+        v2:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v3:
+          name: V2
+          type: (float, positive)
+          units: [3, 0, 0, 0, 0]
+          sample_range: [1.0e-5, 1.0e-3]
+          sample_type: [log, pos]
+        v4:
+          name: V1
+          type: (float, positive)
+          units: [3, 0, 0, 0, 0]
+          sample_range: [1.0e-5, 1.0e-3]
+          sample_type: [log, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+        - v4 != 0
+        - v3 / v4 > 0
+I.47.23:
+    difficulty: easy
+    name: sound_speed
+    raw: sqrt(gamma * pr / rho)
+    prp: sqrt(v1 * v2 / v3)
+    complexity:
+    vars:
+        v1:
+          name: gamma
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1, 2]
+          sample_type: [uni, pos]
+        v2:
+          name: pr
+          type: (float, positive)
+          units: [-1, -2, 1, 0, 0]
+          sample_range: [5.0e-6, 1.5e-5]
+          sample_type: [uni, pos]
+        v3:
+          name: rho
+          type: (float, positive)
+          units: [-3, 0, 1, 0, 0]
+          sample_range: [1, 2]
+          sample_type: [uni, pos]
+        v0:
+          name: c
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+    constraints:
+        - v1 * v2 / v3 >= 0
+        - v3 != 0
+I.48.2:
+    difficulty: medium
+    name: relativistic_energy
+    raw: m * c ^ 2 / sqrt(1 - v ^ 2 / c ^ 2)
+    prp: v1 * 2.99792458e8 ^ 2 / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-29, 1.0e-27]
+          sample_type: [log, pos]
+        v2:
+          name: v
+          type: (float, positive)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e6, 1.0e8]
+          sample_type: [log, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - 1 - v2 ^ 2 / 2.99792458e8 ^ 2 > 0
+I.50.26:
+    difficulty: hard
+    name: nonlinear_oscillator
+    raw: x1 * (cos(omega * t) + alpha * cos(omega * t) ^ 2)
+    prp: v1 * (cos(v2 * v3) + v4 * cos(v2 * v3) ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: x1
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: omega
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v3:
+          name: t
+          type: (float, positive)
+          units: [0, 1, 0, 0, 0]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v4:
+          name: alpha
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: x
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+    constraints:
+II.2.42:
+    difficulty: easy
+    name: thermal_conduction
+    raw: kappa * (T2 - T1) * A / d
+    prp: v1 * (v2 - v3) * v4 / v5
+    complexity:
+    vars:
+        v1:
+          name: kappa
+          type: (float, positive)
+          units: [1, -3, 1, -1, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: T2
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v3:
+          name: T1
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v4:
+          name: A
+          type: (float, positive)
+          units: [2, 0, 0, 0, 0]
+          sample_range: [1.0e-4, 1.0e-2]
+          sample_type: [log, pos]
+        v5:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v0:
+          name: Pwr
+          type: (float)
+          units: [2, -3, 1, 0, 0]
+    constraints:
+        - v5 != 0
+II.3.24:
+    difficulty: easy
+    name: radiated_intensity
+    raw: Pwr / (4 * pi * r ^ 2)
+    prp: v1 / (4 * 3.1415926535897 * v2 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: Pwr
+          type: (float)
+          units: [2, -3, 1, 0, 0]
+          sample_range: [1.0, 1.0e2]
+          sample_type: [log, pos_neg]
+        v2:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v0:
+          name: flux
+          type: (float)
+          units: [0, -3, 1, 0, 0]
+    constraints:
+        - v2 != 0
+II.4.23:
+    difficulty: easy
+    name: point_charge_potential
+    raw: q / (4 * pi * 8.854e-12 * r)
+    prp: v1 / (4 * 3.1415926535897 * 8.854e-12 * v2)
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v0:
+          name: Volt
+          type: (float)
+          units: [0, 0, 0, 0, 1]
+    constraints:
+        - v2 != 0
+II.6.11:
+    difficulty: medium
+    name: dipole_potential
+    raw: 1 / (4 * pi * 8.854e-12) * p_d * cos(theta) / r ^ 2
+    prp: 1 / (4 * 3.1415926535897 * 8.854e-12) * v1 * cos(v2) / v3 ^ 2
+    complexity:
+    vars:
+        v1:
+          name: p_d
+          type: (float)
+          units: [3, -2, 1, 0, -1]
+          sample_range: [1.0e-22, 1.0e-20]
+          sample_type: [log, pos_neg]
+        v2:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v3:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos]
+        v0:
+          name: Volt
+          type: (float)
+          units: [0, 0, 0, 0, 1]
+    constraints:
+        - v3 != 0
+II.6.15a:
+    difficulty: hard
+    name: dipole_field_z
+    raw: p_d / (4 * pi * 8.854e-12) * 3 * z / r ^ 5 * sqrt(x ^ 2 + y ^ 2)
+    prp: v1 / (4 * 3.1415926535897 * 8.854e-12) * 3 * v2 / v3 ^ 5 * sqrt(v4 ^ 2 + v5 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: p_d
+          type: (float)
+          units: [3, -2, 1, 0, -1]
+          sample_range: [1.0e-22, 1.0e-20]
+          sample_type: [log, pos_neg]
+        v2:
+          name: z
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos_neg]
+        v3:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos]
+        v4:
+          name: x
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos_neg]
+        v5:
+          name: y
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos_neg]
+        v0:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+    constraints:
+        - v3 != 0
+II.6.15b:
+    difficulty: hard
+    name: dipole_field_theta
+    raw: p_d / (4 * pi * 8.854e-12) * 3 * cos(theta) * sin(theta) / r ^ 3
+    prp: v1 / (4 * 3.1415926535897 * 8.854e-12) * 3 * cos(v2) * sin(v2) / v3 ^ 3
+    complexity:
+    vars:
+        v1:
+          name: p_d
+          type: (float)
+          units: [3, -2, 1, 0, -1]
+          sample_range: [1.0e-22, 1.0e-20]
+          sample_type: [log, pos_neg]
+        v2:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, pi]
+          sample_type: [uni, pos]
+        v3:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos]
+        v0:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+    constraints:
+        - v3 != 0
+II.8.7:
+    difficulty: medium
+    name: electrostatic_energy
+    raw: 3 / 5 * q ^ 2 / (4 * pi * 8.854e-12 * d)
+    prp: 3 / 5 * v1 ^ 2 / (4 * 3.1415926535897 * 8.854e-12 * v2)
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v2:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-12, 1.0e-10]
+          sample_type: [log, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+        - v2 != 0
+II.8.31:
+    difficulty: easy
+    name: energy_density_electric
+    raw: 8.854e-12 * Ef ^ 2 / 2
+    prp: 8.854e-12 * v1 ^ 2 / 2
+    complexity:
+    vars:
+        v1:
+          name: Ef
+          type: (float, positive)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: E_den
+          type: (float)
+          units: [-1, -2, 1, 0, 0]
+    constraints:
+II.10.9:
+    difficulty: easy
+    name: electric_susceptibility
+    raw: sigma_den / 8.854e-12 * 1 / (1 + chi)
+    prp: v1 / 8.854e-12 * 1 / (1 + v2)
+    complexity:
+    vars:
+        v1:
+          name: sigma_den
+          type: (float)
+          units: [0, -2, 1, 0, -1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: chi
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e2]
+          sample_type: [log, pos]
+        v0:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+    constraints:
+        - 1 + v2 != 0
+II.11.3:
+    difficulty: medium
+    name: driven_oscillator
+    raw: q * Ef / (m * (omega_0 ^ 2 - omega ^ 2))
+    prp: v1 * v2 / (v3 * (v4 ^ 2 - v5 ^ 2))
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v2:
+          name: Ef
+          type: (float, positive)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e-9, 1.0e-7]
+          sample_type: [log, pos]
+        v3:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-28, 1.0e-26]
+          sample_type: [log, pos]
+        v4:
+          name: omega_0
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos_neg]
+        v5:
+          name: omega
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos_neg]
+        v0:
+          name: x
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+    constraints:
+        - v3 != 0
+        - v4 ^ 2 - v5 ^ 2 != 0
+II.11.17:
+    difficulty: hard
+    name: polarizable_density
+    raw: n_0 * (1 + p_d * Ef * cos(theta) / (1.380649e-23 * T))
+    prp: v1 * (1 + v2 * v3 * cos(v4) / (1.380649e-23 * v5))
+    complexity:
+    vars:
+        v1:
+          name: n_0
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e27, 1.0e29]
+          sample_type: [log, pos]
+        v2:
+          name: p_d
+          type: (float)
+          units: [3, -2, 1, 0, -1]
+          sample_range: [1.0e-22, 1.0e-20]
+          sample_type: [log, pos_neg]
+        v3:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v4:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v5:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: n
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+        - v5 != 0
+II.11.20:
+    difficulty: hard
+    name: polarizability_density
+    raw: n_rho * p_d ^ 2 * Ef / (3 * 1.380649e-23 * T)
+    prp: v1 * v2 ^ 2 * v3 / (3 * 1.380649e-23 * v4)
+    complexity:
+    vars:
+        v1:
+          name: n_rho
+          type: (integer -> real due to its order, positive)
+          units: [-3, 0, 0, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v2:
+          name: p_d
+          type: (float)
+          units: [3, -2, 1, 0, -1]
+          sample_range: [1.0e-22, 1.0e-20]
+          sample_type: [log, pos_neg]
+        v3:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v4:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: Pol
+          type: (float)
+          units: [0, -2, 1, 0, -1]
+    constraints:
+        - v4 != 0
+II.11.27:
+    difficulty: hard
+    name: polarization_field
+    raw: n * alpha / (1 - (n * alpha / 3)) * 8.854e-12 * Ef
+    prp: v1 * v2 / (1 - (v1 * v2 / 3)) * 8.854e-12 * v3
+    complexity:
+    vars:
+        v1:
+          name: n
+          type: (integer -> real due to its order, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v2:
+          name: alpha
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-33, 1.0e-31]
+          sample_type: [log, pos]
+        v3:
+          name: Ef
+          type: (float, positive)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: Pol
+          type: (float)
+          units: [0, -2, 1, 0, -1]
+    constraints:
+        - 1 - (v1 * v2 / 3) != 0
+II.11.28:
+    difficulty: hard
+    name: dielectric_constant
+    raw: 1 + n * alpha / (1 - (n * alpha / 3))
+    prp: 1 + v1 * v2 / (1 - (v1 * v2 / 3))
+    complexity:
+    vars:
+        v1:
+          name: n
+          type: (integer -> real due to its order, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v2:
+          name: alpha
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-33, 1.0e-31]
+          sample_type: [log, pos]
+        v0:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+        - 1-(v1*v2/3) != 0
+II.13.17:
+    difficulty: easy
+    name: radiated_power
+    raw: 1 / (4 * pi * 8.854e-12 * c ^ 2) * 2 * I / r
+    prp: 1 / (4 * 3.1415926535897 * 8.854e-12 * 2.99792458e8 ^ 2) * 2 * v1 / v2
+    complexity:
+    vars:
+        v1:
+          name: I
+          type: (float)
+          units: [2, -3, 1, 0, -1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v0:
+          name: B
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v2 != 0
+II.13.23:
+    difficulty: hard
+    name: relativistic_charge_density
+    raw: rho_c_0 / sqrt(1 - v ^ 2 / c ^ 2)
+    prp: v1 / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: rho_c_0
+          type: (float, positive)
+          units: [-1, -2, 1, 0, -1]
+          sample_range: [1.0e27, 1.0e29]
+          sample_type: [log, pos]
+        v2:
+          name: v
+          type: (float, positive)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e6, 1.0e8]
+          sample_type: [log, pos]
+        v0:
+          name: rho_c
+          type: (float)
+          units: [-1, -2, 1, 0, -1]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - 2.99792458e8 ^ 2 - v2 ^ 2 > 0
+II.13.34:
+    difficulty: hard
+    name: relativistic_current_density
+    raw: rho_c_0 * v / sqrt(1 - v ^ 2 / c ^ 2)
+    prp: v1 * v2 / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: rho_c_0
+          type: (float, positive)
+          units: [-1, -2, 1, 0, -1]
+          sample_range: [1.0e27, 1.0e29]
+          sample_type: [log, pos]
+        v2:
+          name: v
+          type: (float, positive)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e6, 1.0e8]
+          sample_type: [log, pos]
+        v0:
+          name: j
+          type: (float)
+          units: [0, -3, 1, 0, -1]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - 2.99792458e8 ^ 2 - v2 ^ 2 > 0
+II.15.4:
+    difficulty: easy
+    name: magnetic_potential_energy
+    raw: -mom * B * cos(theta)
+    prp: neg(v1) * v2 * cos(v3)
+    complexity:
+    vars:
+        v1:
+          name: mom
+          type: (float)
+          units: [4, -3, 1, 0, -1]
+          sample_range: [1.0e-25, 1.0e-23]
+          sample_type: [log, pos_neg]
+        v2:
+          name: B
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: theta
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+II.15.5:
+    difficulty: easy
+    name: electric_dipole_energy
+    raw: -p_d * Ef * cos(theta)
+    prp: neg(v1) * v2 * cos(v3)
+    complexity:
+    vars:
+        v1:
+          name: p_d
+          type: (float)
+          units: [3, -2, 1, 0, -1]
+          sample_range: [1.0e-22, 1.0e-20]
+          sample_type: [log, pos_neg]
+        v2:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v3:
+          name: theta
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+II.21.32:
+    difficulty: medium
+    name: relativistic_coulomb_potential
+    raw: q / (4 * pi * 8.854e-12 * r * (1 - v / c))
+    prp: v1 / (4 * 3.1415926535897 * 8.854e-12 * v2 * (1 - v3 / 2.99792458e8))
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e2]
+          sample_type: [log, pos]
+        v3:
+          name: v
+          type: (float, positive)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e6, 1.0e8]
+          sample_type: [log, pos]
+        v0:
+          name: Volt
+          type: (float)
+          units: [0, 0, 0, 0, 1]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v2 != 0
+        - 2.99792458e8 - v3 > 0
+II.24.17:
+    difficulty: hard
+    name: wavevector
+    raw: sqrt(omega ^ 2 / c ^ 2 - pi ^ 2 / d ^ 2)
+    prp: sqrt(v1 ^ 2 / 2.99792458e8 ^ 2 - 3.1415926535897 ^ 2 / v2 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: omega
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos_neg]
+        v2:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v0:
+          name: k
+          type: (float)
+          units: [-1, 0, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v1 ^ 2 / 2.99792458e8 ^ 2 - pi ^ 2 / v2 ^ 2 >= 0
+        - v2 != 0
+II.27.16:
+    difficulty: easy
+    name: electromagnetic_energy_density
+    raw: 8.854e-12 * c * Ef ^ 2
+    prp: 8.854e-12 * 2.99792458e8 * v1 ^ 2
+    complexity:
+    vars:
+        v1:
+          name: Ef
+          type: (float, positive)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v0:
+          name: flux
+          type: (float)
+          units: [0, -3, 1, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+II.27.18:
+    difficulty: easy
+    name: electric_energy_density
+    raw: 8.854e-12 * Ef ^ 2
+    prp: 8.854e-12 * v1 ^ 2
+    complexity:
+    vars:
+        v1:
+          name: Ef
+          type: (float, positive)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v0:
+          name: E_den
+          type: (float)
+          units: [-1, -2, 1, 0, 0]
+    constraints:
+II.34.2a:
+    difficulty: medium
+    name: current_loop_field
+    raw: q * v / (2 * pi * r)
+    prp: v1 * v2 / (2 * 3.1415926535897 * v3)
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v2:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e5, 1.0e7]
+          sample_type: [log, pos_neg]
+        v3:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos]
+        v0:
+          name: I
+          type: (float)
+          units: [2, -3, 1, 0, -1]
+    constraints:
+        - v3 != 0
+II.34.2:
+    difficulty: medium
+    name: magnetic_dipole_moment
+    raw: q * v * r / 2
+    prp: v1 * v2 * v3 / 2
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v2:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e5, 1.0e7]
+          sample_type: [log, pos_neg]
+        v3:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos]
+        v0:
+          name: mom
+          type: (float)
+          units: [4, -3, 1, 0, -1]
+    constraints:
+II.34.11:
+    difficulty: easy
+    name: gyrofrequency
+    raw: g_ * q * B / (2 * m)
+    prp: v1 * v2 * v3 / (2 * v4)
+    complexity:
+    vars:
+        v1:
+          name: g_
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [-1.0, 1.0]
+          sample_type: [uni, pos]
+        v2:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v3:
+          name: B
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-9, 1.0e-7]
+          sample_type: [log, pos_neg]
+        v4:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-30, 1.0e-28]
+          sample_type: [log, pos]
+        v0:
+          name: omega
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+    constraints:
+        - v4 != 0
+II.34.29a:
+    difficulty: medium
+    name: bohr_magneton
+    raw: q * 6.626e-34 / (4 * pi * m)
+    prp: v1 * 6.626e-34 / (4 * 3.1415926535897 * v2)
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v2:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-30, 1.0e-28]
+          sample_type: [log, pos]
+        v0:
+          name: mom
+          type: (float)
+          units: [4, -3, 1, 0, -1]
+    constraints:
+        - v2 != 0
+II.34.29b:
+    difficulty: easy
+    name: magnetic_zeeman_energy
+    raw: g_ * 9.2740100783e-24 * B * Jz / (6.626e-34 / (2 * pi))
+    prp: v1 * 9.2740100783e-24 * v2 * v3 / (6.626e-34 / (2 * 3.1415926535897))
+    complexity:
+    vars:
+        v1:
+          name: g_
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [-1.0, 1.0]
+          sample_type: [uni, pos]
+        v2:
+          name: B
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: Jz
+          type: (float)
+          units: [2, -1, 1, 0, 0]
+          sample_range: [1.0e-26, 1.0e-22]
+          sample_type: [log, pos_neg]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+II.35.18:
+    difficulty: hard
+    name: boltzmann_population
+    raw: n_0 / (exp(mom * B / (1.380649e-23 * T)) + exp(-mom * B / (1.380649e-23 * T)))
+    prp: v1 / (exp(v2 * v3 / (1.380649e-23 * v4)) + exp(neg(v2) * v3 / (1.380649e-23 * v4)))
+    complexity:
+    vars:
+        v1:
+          name: n_0
+          type: (integer -> real due to its order, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v2:
+          name: mom
+          type: (float, positive)
+          units: [4, -3, 1, 0, -1]
+          sample_range: [1.0e-25, 1.0e-23]
+          sample_type: [log, pos]
+        v3:
+          name: B
+          type: (float, positive)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v4:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: n
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+        - v4 != 0
+II.35.21:
+    difficulty: hard
+    name: magnetization_density
+    raw: n_rho * mom * tanh(mom * B / (1.380649e-23 * T))
+    prp: v1 * v2 * tanh(v2 * v3 / (1.380649e-23 * v4))
+    complexity:
+    vars:
+        v1:
+          name: n_rho
+          type: (integer -> real due to its order, positive)
+          units: [-3, 0, 0, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v2:
+          name: mom
+          type: (float, positive)
+          units: [4, -3, 1, 0, -1]
+          sample_range: [1.0e-25, 1.0e-23]
+          sample_type: [log, pos]
+        v3:
+          name: B
+          type: (float, positive)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v4:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: M
+          type: (float)
+          units: [1, -3, 1, 0, -1]
+    constraints:
+        - v4 != 0
+II.36.38:
+    difficulty: hard
+    name: susceptibility_magnetization
+    raw: mom * H / (1.380649e-23 * T) + (mom * alpha) / (8.854e-12 * c ^ 2 * 1.380649e-23 * T) * M
+    prp: v1 * v2 / (1.380649e-23 * v3) + (v1 * v4) / (8.854e-12 * 2.99792458e8 ^ 2 * 1.380649e-23 * v3) * v5
+    complexity:
+    vars:
+        v1:
+          name: mom
+          type: (float)
+          units: [4, -3, 1, 0, -1]
+          sample_range: [1.0e-25, 1.0e-23]
+          sample_type: [log, pos_neg]
+        v2:
+          name: H
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v4:
+          name: alpha
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 1]
+          sample_type: [uni, pos]
+        v5:
+          name: M
+          type: (integer -> real due to its order, positive)
+          units: [1, -3, 1, 0, -1]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v0:
+          name: f
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v3 != 0
+II.37.1:
+    difficulty: medium
+    name: effective_magnetic_moment
+    raw: mom * (1 + chi) * B
+    prp: v1 * (1 + v2) * v3
+    complexity:
+    vars:
+        v1:
+          name: mom
+          type: (float)
+          units: [4, -3, 1, 0, -1]
+          sample_range: [1.0e-25, 1.0e-23]
+          sample_type: [log, pos_neg]
+        v2:
+          name: chi
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e4, 1.0e6]
+          sample_type: [log, pos_neg]
+        v3:
+          name: B
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+II.38.3:
+    difficulty: easy
+    name: elastic_force
+    raw: Y * A * x / d
+    prp: v1 * v2 * v3 / v4
+    complexity:
+    vars:
+        v1:
+          name: Y
+          type: (float, positive)
+          units: [-1, -2, 1, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: A
+          type: (float, positive)
+          units: [2, 0, 0, 0, 0]
+          sample_range: [1.0e-4, 1.0e-2]
+          sample_type: [log, pos]
+        v3:
+          name: x
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v4:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v0:
+          name: F
+          type: (float)
+          units: [1, -2, 1, 0, 0]
+    constraints:
+        - v4 != 0
+II.38.14:
+    difficulty: easy
+    name: shear_modulus
+    raw: Y / (2 * (1 + sigma))
+    prp: v1 / (2 * (1 + v2))
+    complexity:
+    vars:
+        v1:
+          name: Y
+          type: (float, positive)
+          units: [-1, -2, 1, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v2:
+          name: sigma
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v0:
+          name: mu_S
+          type: (float)
+          units: [-1, -2, 1, 0, 0]
+    constraints:
+        - 1 + v2 != 0
+III.4.32:
+    difficulty: medium
+    name: bose_einstein_distribution
+    raw: 1 / (exp((6.626e-34 / (2 * pi)) * omega / (1.380649e-23 * T)) - 1)
+    prp: 1 / (exp((6.626e-34 / (2 * 3.1415926535897)) * v1 / (1.380649e-23 * v2)) - 1)
+    complexity:
+    vars:
+        v1:
+          name: omega
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v2:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: n
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+        - v1 != 0
+        - v2 != 0
+III.4.33:
+    difficulty: hard
+    name: planck_energy_distribution
+    raw: (6.626e-34 / (2 * pi)) * omega / (exp((6.626e-34 / (2 * pi)) * omega / (1.380649e-23 * T)) - 1)
+    prp: (6.626e-34 / (2 * 3.1415926535897)) * v1 / (exp((6.626e-34 / (2 * 3.1415926535897)) * v1 / (1.380649e-23 * v2)) - 1)
+    complexity:
+    vars:
+        v1:
+          name: omega
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v2:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+        - v1 != 0
+        - v2 != 0
+III.7.38:
+    difficulty: easy
+    name: electron_spin_splitting
+    raw: 2 * mom * B / (6.626e-34 / (2 * pi))
+    prp: 2 * v1 * v2 / (6.626e-34 / (2 * 3.1415926535897))
+    complexity:
+    vars:
+        v1:
+          name: mom
+          type: (float)
+          units: [4, -3, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v2:
+          name: B
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: omega
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+    constraints:
+III.8.54:
+    difficulty: medium
+    name: quantum_oscillation
+    raw: sin(E_n * t / (6.626e-34 / (2 * pi))) ^ 2
+    prp: sin(v1 * v2 / (6.626e-34 / (2 * 3.1415926535897))) ^ 2
+    complexity:
+    vars:
+        v1:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos_neg]
+        v2:
+          name: t
+          type: (float, positive)
+          units: [0, 1, 0, 0, 0]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos]
+        v0:
+          name: prob
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+III.9.52:
+    difficulty: hard
+    name: rabi_flopping
+    srsd: (p_d * Ef * t / (6.626e-34 / (2 * pi))) ^ 2 * sin((omega - omega_0) * t / 2) ^ 2 / ((omega - omega_0) * t / 2) ^ 2
+    raw: (p_d * Ef * t / (6.626e-34 / (2 * pi))) * sin((omega - omega_0) * t / 2) ^ 2 / ((omega - omega_0) * t / 2) ^ 2
+    prp: (v1 * v2 * v3 / (6.626e-34 / (2 * 3.1415926535897))) * sin((v4 - v5) * v3 / 2) ^ 2 / ((v4 - v5) * v3 / 2) ^ 2
+    complexity:
+    vars:
+        v1:
+          name: p_d
+          type: (float)
+          units: [3, -2, 1, 0, -1]
+          sample_range: [1.0e-22, 1.0e-20]
+          sample_type: [log, pos_neg]
+        v2:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v3:
+          name: t
+          type: (float, positive)
+          units: [0, 1, 0, 0, 0]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos]
+        v4:
+          name: omega
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v5:
+          name: omega_0
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v0:
+          name: prob
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+        - v3 != 0
+        - v4 - v5 != 0
+III.10.19:
+    difficulty: hard
+    name: total_magnetic_moment
+    raw: mom * sqrt(Bx ^ 2 + By ^ 2 + Bz ^ 2)
+    prp: v1 * sqrt(v2 ^ 2 + v3 ^ 2 + v4 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: mom
+          type: (float)
+          units: [4, -3, 1, 0, -1]
+          sample_range: [1.0e-25, 1.0e-23]
+          sample_type: [log, pos_neg]
+        v2:
+          name: Bx
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: By
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v4:
+          name: Bz
+          type: (float)
+          units: [-2, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+III.12.43:
+    difficulty: easy
+    name: photon_momentum
+    raw: n * (6.626e-34 / (2 * pi))
+    prp: v1 * (6.626e-34 / (2 * 3.1415926535897))
+    complexity:
+    vars:
+        v1:
+          name: n
+          type: (integer)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1, 1.0e2]
+          sample_type: [int, pos]
+        v0:
+          name: L
+          type: (float)
+          units: [2, -1, 1, 0, 0]
+    constraints:
+III.13.18:
+    difficulty: medium
+    name: tunneling_probability
+    raw: 2 * E_n * d ^ 2 * k / (6.626e-34 / (2 * pi))
+    prp: 2 * v1 * v2 ^ 2 * v3 / (6.626e-34 / (2 * 3.1415926535897))
+    complexity:
+    vars:
+        v1:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos_neg]
+        v2:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos]
+        v3:
+          name: k
+          type: (float, positive)
+          units: [-1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v0:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+    constraints:
+III.14.14:
+    difficulty: medium
+    name: diode_current
+    raw: I_0 * (exp(q * Volt / (1.380649e-23 * T)) - 1)
+    prp: v1 * (exp(v2 * v3 / (1.380649e-23 * v4)) - 1)
+    complexity:
+    vars:
+        v1:
+          name: I_0
+          type: (float)
+          units: [2, -3, 1, 0, -1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: q
+          type: (float, positive)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-22, 1.0e-20]
+          sample_type: [log, pos]
+        v3:
+          name: Volt
+          type: (float)
+          units: [0, 0, 0, 0, 1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v4:
+          name: T
+          type: (float, positive)
+          units: [0, 0, 0, 1, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos]
+        v0:
+          name: I
+          type: (float)
+          units: [2, -3, 1, 0, -1]
+    constraints:
+        - v4 != 0
+III.15.12:
+    difficulty: medium
+    name: energy_bandwidth
+    raw: 2 * U * (1 - cos(k * d))
+    prp: 2 * v1 * (1 - cos(v2 * v3))
+    complexity:
+    vars:
+        v1:
+          name: U
+          type: (float, positive)
+          units: [2, -2, 1, 0, 0]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos]
+        v2:
+          name: k
+          type: (float, positive)
+          units: [-1, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v3:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+III.15.14:
+    difficulty: medium
+    name: quantum_kinetic_energy
+    raw: (6.626e-34 / (2 * pi)) ^ 2 / (2 * E_n * d ^ 2)
+    prp: (6.626e-34 / (2 * 3.1415926535897)) ^ 2 / (2 * v1 * v2 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: E_n
+          type: (float, positive)
+          units: [2, -2, 1, 0, 0]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos]
+        v2:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos]
+        v0:
+          name: m
+          type: (float)
+          units: [0, 0, 1, 0, 0]
+    constraints:
+        - v1 != 0
+        - v2 != 0
+III.15.27:
+    difficulty: easy
+    name: fine_structure_wavevector
+    raw: 2 * pi * alpha / (n * d)
+    prp: 2 * 3.1415926535897 * v1 / (v2 * v3)
+    complexity:
+    vars:
+        v1:
+          name: alpha
+          type: (integer)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [-1.0e2, 1.0e2]
+          sample_type: [int, pos]
+        v2:
+          name: n
+          type: (integer, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1, 1.0e2]
+          sample_type: [int, pos]
+        v3:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos]
+        v0:
+          name: k
+          type: (float)
+          units: [-1, 0, 0, 0, 0]
+    constraints:
+        - v2 != 0
+        - v3 != 0
+III.17.37:
+    difficulty: medium
+    name: relativistic_beta_factor
+    raw: beta * (1 + alpha * cos(theta))
+    prp: v1 * (1 + v2 * cos(v3))
+    complexity:
+    vars:
+        v1:
+          name: beta
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos]
+        v2:
+          name: alpha
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos_neg]
+        v3:
+          name: theta
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: f
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+III.19.51:
+    difficulty: medium
+    name: hydrogen_energy_level
+    raw: -m * q ^ 4 / (2 * (4 * pi * 8.854e-12) ^ 2 * (6.626e-34 / (2 * pi)) ^ 2) * (1 / n ^ 2)
+    prp: neg(v1) * v2 ^ 4 / (2 * (4 * 3.1415926535897 * 8.854e-12) ^ 2 * (6.626e-34 / (2 * 3.1415926535897)) ^ 2) * (1 / v3 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-30, 1.0e-28]
+          sample_type: [log, pos]
+        v2:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v3:
+          name: n
+          type: (integer, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1, 1.0e2]
+          sample_type: [int, pos]
+        v0:
+          name: E_n
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+        - v3 != 0
+III.21.20:
+    difficulty: hard
+    name: lorentz_current
+    raw: -rho_c_0 * q * A_vec / m
+    prp: neg(v1) * v2 * v3 / v4
+    complexity:
+    vars:
+        v1:
+          name: rho_c_0
+          type: (float)
+          units: [-1, -2, 1, 0, -1]
+          sample_range: [1.0e-29, 1.0e-27, uses_positive=False]
+          sample_type: [log, pos_neg]
+        v2:
+          name: q
+          type: (float, positive)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9, uses_positive=False]
+          sample_type: [log, pos_neg]
+        v3:
+          name: A_vec
+          type: (float)
+          units: [-1, 1, 0, 0, 1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v4:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-30, 1.0e-28]
+          sample_type: [log, pos]
+        v0:
+          name: j
+          type: (float)
+          units: [0, -3, 1, 0, -1]
+    constraints:
+        - v4 != 0
+B1:
+    difficulty: hard
+    name: rutherford_scattering
+    raw: (Z_1 * Z_2 * alpha * 1.054571817e-34 * c / (4 * E_n * sin(theta / 2) ^ 2)) ^ 2
+    prp: (v1 * v2 * 7.2973525693e-3 * 1.054571817e-34 * 2.99792458e8 / (4 * v3 * sin(v4 / 2) ^ 2)) ^ 2
+    complexity:
+    vars:
+        v1:
+          name: Z_1
+          type: (integer, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e1]
+          sample_type: [int, pos]
+        v2:
+          name: Z_2
+          type: (integer, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e1]
+          sample_type: [int, pos]
+        v3:
+          name: E_n
+          type: (float, positive)
+          units: [2, -2, 1, 0, 0]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos]
+        v4:
+          name: theta
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: A
+          type: (float)
+          units: [2, 0, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v3 != 0
+        - sin(v4 / 2) != 0
+B2:
+    difficulty: hard
+    name: gravitational_wave_energy
+    feyn_name: 3.55 Goldstein
+    raw: m * k_G / L ^ 2 * (1 + sqrt(1 + 2 * E_n * L ^ 2 / (m * k_G ^ 2)) * cos(theta1 - theta2))
+    prp: v1 * v2 / v3 ^ 2 * (1 + sqrt(1 + 2 * v4 * v3 ^ 2 / (v1 * v2 ^ 2)) * cos(v5 - v6))
+    complexity:
+    vars:
+        v1:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v2:
+          name: k_G
+          type: (float, positive)
+          units: [3, -2, 1, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos]
+        v3:
+          name: L
+          type: (float, positive)
+          units: [2, -1, 1, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v4:
+          name: E_n
+          type: (float, positive)
+          units: [2, -2, 1, 0, 0]
+          sample_range: [1.0e25, 1.0e27]
+          sample_type: [log, pos]
+        v5:
+          name: theta1
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v6:
+          name: theta2
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: k
+          type: (float)
+          units: [-1, 0, 0, 0, 0]
+    constraints:
+        - v1 != 0
+        - v2 != 0
+        - v4 * v3 ^ 2 / (v1 * v2 ^ 2) >= -1 / 2
+B3:
+    difficulty: hard
+    name: compton_wavelength_shift
+    feyn_name: 3.64 Goldstein
+    raw: d * (1 - alpha ^ 2) / (1 + alpha * cos(theta1 - theta2))
+    prp: v1 * (1 - v2 ^ 2) / (1 + v2 * cos(v3 - v4))
+    complexity:
+    vars:
+        v1:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v2:
+          name: alpha
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0.0, 1.0]
+          sample_type: [uni, pos]
+        v3:
+          name: theta1
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v4:
+          name: theta2
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: r
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+    constraints:
+        - v2 * cos(v3 - v4) != -1
+B4:
+    difficulty: hard
+    name: quantum_angular_momentum
+    feyn_name: 3.16 Goldstein
+    raw: sqrt(2 / m * (E_n - U - L ^ 2 / (2 * m * r ^ 2)))
+    prp: sqrt(2 / v1 * (v2 - v3 - v4 ^ 2 / (2 * v1 * v5 ^ 2)))
+    complexity:
+    vars:
+        v1:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v2:
+          name: E_n
+          type: (float, positive)
+          units: [2, -2, 1, 0, 0]
+          sample_range: [1.0e25, 1.0e27]
+          sample_type: [log, pos]
+        v3:
+          name: U
+          type: (float, positive)
+          units: [2, -2, 1, 0, 0]
+          sample_range: [1.0e25, 1.0e27]
+          sample_type: [log, pos]
+        v4:
+          name: L
+          type: (float, positive)
+          units: [2, -1, 1, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos_neg]
+        v5:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v0:
+          name: v
+          type: (float)
+          units: [1, -1, 0, 0, 0]
+    constraints:
+        - 2 / v1 * (v2 - v3 - v4 ^ 2 / (2 * v1 * v5 ^ 2)) >= 0
+        - v1 != 0
+        - v5 != 0
+B5:
+    difficulty: hard
+    name: orbital_period
+    feyn_name: 3.74 Goldstein
+    raw: 2 * pi * d ^ (3 / 2) / sqrt(G * (m1 + m2))
+    prp: 2 * 3.1415926535897 * v1 ^ (3 / 2) / sqrt(6.67430e-11 * (v3 + v4))
+    complexity:
+    vars:
+        v1:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v3:
+          name: m1
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v4:
+          name: m2
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v0:
+          name: t
+          type: (float, positive)
+          units: [0, 1, 0, 0, 0]
+    constants:
+        G:
+          name: gravitational constant
+          value: 6.67430e-11
+          unit:
+    constraints:
+        - v2 != 0
+        - v3 + v4 != 0
+        - v2 * (v3 + v4) > 0
+B6:
+    difficulty: hard
+    name: relativistic_orbit_shift
+    feyn_name: 3.99 Goldstein
+    raw: sqrt(1 + 2 * epsilon ^ 2 * E_n * L ^ 2 / (m * (Z_1 * Z_2 * q ^ 2) ^ 2))
+    prp: sqrt(1 + 2 * v1 ^ 2 * v2 * v3 ^ 2 / (v4 * (v5 * v6 * v7 ^ 2) ^ 2))
+    complexity:
+    vars:
+        v1:
+          name: epsilon
+          type: (float)
+          units: [-1, 2, -1, 0, 2]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos_neg]
+        v2:
+          name: E_n
+          type: (float, positive)
+          units: [2, -2, 1, 0, 0]
+          sample_range: [1.0e-18, 1.0e-16]
+          sample_type: [log, pos]
+        v3:
+          name: L
+          type: (float, positive)
+          units: [2, -1, 1, 0, 0]
+          sample_range: [1.0e-10, 1.0e-8]
+          sample_type: [log, pos]
+        v4:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-30, 1.0e-28]
+          sample_type: [log, pos]
+        v5:
+          name: Z_1
+          type: (integer, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e1]
+          sample_type: [int, pos]
+        v6:
+          name: Z_2
+          type: (integer, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e1]
+          sample_type: [int, pos]
+        v7:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v0:
+          name: alpha
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+    constraints:
+        - v4 != 0
+        - v5 != 0
+        - v6 != 0
+        - v7 != 0
+        - 1 + 2 * v1 * v2 * v3 ^ 2 / (v4 * (v5 * v6 * v7 ^ 2) ^ 2) >= 0
+B7:
+    difficulty: hard
+    name: cosmological_expansion_rate
+    feyn_name: Friedman Equation
+    raw: sqrt(8 * pi * G * rho / 3 - alpha * c ^ 2 / d ^ 2)
+    prp: sqrt(8 * 3.1415926535897 * 6.67430e-11 * v1 / 3 - v2 * 2.99792458e8 ^ 2 / v3 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: rho
+          type: (float, positive)
+          units: [-3, 0, 1, 0, 0]
+          sample_range: [1.0e-28, 1.0e-26]
+          sample_type: [log, pos]
+        v2:
+          name: alpha # TODO: why integer here?
+          type: (Integer)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [-1.0, 2.0]
+          sample_type: [int, pos]
+        v3:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e25, 1.0e27]
+          sample_type: [log, pos]
+        v0:
+          name: H_G
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+    constants:
+        G:
+          name: gravitational constant
+          value: 6.67430e-11
+          unit:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v3 != 0
+        - 6.67430e-11 * v1 * v3 ^ 2 / 3 >= v2 * 2.99792458e8 ^ 2
+B8:
+    difficulty: medium
+    name: relativistic_energy_loss
+    feyn_name: Compton Scattering
+    raw: E_n / (1 + E_n / (9.10938356e-31 * c ^ 2) * (1 - cos(theta)))
+    prp: v1 / (1 + v1 / (9.10938356e-31 * 2.99792458e8 ^ 2) * (1 - cos(v2)))
+    complexity:
+    vars:
+        v1:
+          name: E_n
+          type: (float, positive)
+          units: [2, -2, 1, 0, 0]
+          sample_range: [1.0e-24, 1.0e-22]
+          sample_type: [log, pos]
+        v2:
+          name: theta
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [-pi, pi]
+          sample_type: [uni, pos]
+        v0:
+          name: K
+          type: (float)
+          units: [2, -2, 1, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v1 * (1 - cos(v2)) / (9.10938356e-31 * 2.99792458e8 ^ 2) != -1
+B9:
+    difficulty: hard
+    name: gravitational_wave_power
+    feyn_name: Gravitational wave ratiated power
+    raw: -32/5 * G ^ 4 / c ^ 5 * (m1 * m2) ^ 2 * (m1 + m2) / r ^ 5
+    prp: neg(32/5) * 6.67430e-11 ^ 4 / 2.99792458e8 ^ 5 * (v1 * v2) ^ 2 * (v1 + v2) / v3 ^ 5
+    complexity:
+    vars:
+        v1:
+          name: m1
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v2:
+          name: m2
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e23, 1.0e25]
+          sample_type: [log, pos]
+        v3:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v0:
+          name: Pwr
+          type: (float)
+          units: [2, -3, 1, 0, 0]
+    constants:
+        G:
+          name: gravitational constant
+          value: 6.67430e-11
+          unit:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v3 != 0
+B10:
+    difficulty: hard
+    name: relativistic_aberration
+    feyn_name: Relativistic aberration
+    feyn: arccos((cos(theta2)-v/c)/(1-v/c*cos(theta2)))
+    raw: (cos(theta2) - v / c) / (1 - v / c * cos(theta2))
+    prp: (cos(v1) - v2 / 2.99792458e8) / (1 - v2 / 2.99792458e8 * cos(v1))
+    complexity:
+    vars:
+        v1:
+          name: theta2
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, pi]
+          sample_type: [uni, pos]
+        v2:
+          name: v
+          type: (float, positive)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e6, 1.0e8]
+          sample_type: [log, pos_neg]
+        v0:
+          name: theta1
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v2 / 2.99792458e8 * cos(v1) != 1
+        - (cos(v1) - v2 / 2.99792458e8) / (1 - v2 / 2.99792458e8 * cos(v1)) >= 1
+        - (cos(v1) - v2 / 2.99792458e8) / (1 - v2 / 2.99792458e8 * cos(v1)) <= 1
+B11:
+    difficulty: hard
+    name: diffraction_intensity_pattern
+    feyn_name: N-slit diffraction
+    raw: I_0 * (sin(alpha / 2) * sin(n * delta / 2) / (alpha / 2 * sin(delta / 2))) ^ 2
+    prp: v1 * (sin(v2 / 2) * sin(v3 * v4 / 2) / (v2 / 2 * sin(v4 / 2))) ^ 2
+    complexity:
+    vars:
+        v1:
+          name: I_0
+          type: (float, positive)
+          units: [2, -3, 1, 0, -1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos]
+        v2:
+          name: alpha
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos]
+        v3:
+          name: n
+          type: (integer, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0, 1.0e2]
+          sample_type: [int, pos]
+        v4:
+          name: delta
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos]
+        v0:
+          name: I
+          type: (float)
+          units: [2, -3, 1, 0, -1]
+    constraints:
+B12:
+    difficulty: hard
+    name: charged_plate_potential
+    feyn_name: 2.11 Jackson
+    raw: q / (4 * pi * epsilon * y ^ 2) * (4 * pi * epsilon * Volt * d - q * d * y ^ 3 / (y ^ 2 - d ^ 2) ^ 2)
+    prp: v1 / (4 * 3.1415926535897 * v2 * v3 ^ 2) * (4 * 3.1415926535897 * v2 * v4 * v5 - v1 * v5 * v3 ^ 3 / (v3 ^ 2 - v5 ^ 2) ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v2:
+          name: epsilon
+          type: (float, positive)
+          units: [-1, 2, -1, 0, 2]
+          sample_range: [1.0e-12, 1.0e-10]
+          sample_type: [log, pos]
+        v3:
+          name: y
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v4:
+          name: Volt
+          type: (float)
+          units: [0, 0, 0, 0, 1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v5:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v0:
+          name: F
+          type: (float)
+          units: [1, -2, 1, 0, 0]
+    constraints:
+        - v3 != 0
+B13:
+    difficulty: hard
+    name: electric_potential_dipole
+    feyn_name: 3.45 Jackson
+    raw: 1 / (4 * pi * epsilon) * q / sqrt(r ^ 2 + d ^ 2 - 2 * r * d * cos(alpha))
+    prp: 1 / (4 * 3.1415926535897 * v1) * v2 / sqrt(v3 ^ 2 + v4 ^ 2 - 2 * v3 * v4 * cos(v5))
+    complexity:
+    vars:
+        v1:
+          name: epsilon
+          type: (float, positive)
+          units: [-1, 2, -1, 0, 2]
+          sample_range: [1.0e-12, 1.0e-10]
+          sample_type: [log, pos]
+        v2:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-3, 1.0e-1]
+          sample_type: [log, pos_neg]
+        v3:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v4:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v5:
+          name: alpha
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, pi]
+          sample_type: [uni, pos]
+        v0:
+          name: Volt
+          type: (float)
+          units: [0, 0, 0, 0, 1]
+    constraints:
+        - v3 ^ 2 + v4 ^ 2 - 2 * v3 * v4 * cos(v5) > 0
+B14:
+    difficulty: hard
+    name: field_effect_on_dipole
+    feyn_name: 4.60' Jackson
+    raw: Ef * cos(theta) * (-r + d ^ 3 / r ^ 2 * (alpha - 1) / (alpha + 2))
+    prp: v1 * cos(v2) * (neg(v3) + v4 ^ 3 / v3 ^ 2 * (v5 - 1) / (v5 + 2))
+    complexity:
+    vars:
+        v1:
+          name: Ef
+          type: (float)
+          units: [-1, 0, 0, 0, 1]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v2:
+          name: theta
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, pi]
+          sample_type: [uni, pos]
+        v3:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v4:
+          name: d
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-2, 1.0]
+          sample_type: [log, pos]
+        v5:
+          name: alpha
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos]
+        v0:
+          name: Volt
+          type: (float)
+          units: [0, 0, 0, 0, 1]
+    constraints:
+        - v3 != 0
+        - v5 != -2
+B15:
+    difficulty: hard
+    name: transverse_doppler_shift
+    feyn_name: 11.38 Jackson
+    raw: sqrt(1 - v ^ 2 / c ^ 2) * omega / (1 + v / c * cos(theta))
+    prp: sqrt(1 - v1 ^ 2 / 2.99792458e8 ^ 2) * v2 / (1 + v1 / 2.99792458e8 * cos(v3))
+    complexity:
+    vars:
+        v1:
+          name: v
+          type: (float, positive)
+          units: [1, -1, 0, 0, 0]
+          sample_range: [1.0e5, 1.0e7]
+          sample_type: [log, pos]
+        v2:
+          name: omega
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos]
+        v3:
+          name: theta
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: omega_0
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v1 / 2.99792458e8 * cos(v3) != -1
+        - 2.99792458e8 ^ 2 - v1 ^ 2 >= 0
+B16:
+    difficulty: hard
+    name: relativistic_hamiltonian
+    feyn_name: 8.56 Goldstein
+    raw: sqrt((p - q * A_vec) ^ 2 * c ^ 2 + m ^ 2 * c ^ 4) + q * Volt
+    prp: sqrt((v1 - v2 * v3) ^ 2 * 2.99792458e8 ^ 2 + v4 ^ 2 * 2.99792458e8 ^ 4) + v2 * v5
+    complexity:
+    vars:
+        v1:
+          name: p
+          type: (float)
+          units: [1, -1, 1, 0, 0]
+          sample_range: [1.0e-9, 1.0e-7]
+          sample_type: [log, pos_neg]
+        v2:
+          name: q
+          type: (float)
+          units: [2, -2, 1, 0, -1]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v3:
+          name: A_vec
+          type: (float)
+          units: [-1, 1, 0, 0, 1]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v4:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-30, 1.0e-28]
+          sample_type: [log, pos]
+        v5:
+          name: Volt
+          type: (float)
+          units: [0, 0, 0, 0, 1]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v0:
+          name: E_n
+          type: (float, positive)
+          units: [2, -2, 1, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+B17:
+    difficulty: hard
+    name: quantum_oscillator_energy
+    feyn_name: 12.80' Goldstein
+    raw: 1 / (2 * m) * (p ^ 2 + m ^ 2 * omega ^ 2 * x ^ 2 * (1 + alpha * x / y))
+    prp: 1 / (2 * v1) * (v2 ^ 2 + v1 ^ 2 * v3 ^ 2 * v4 ^ 2 * (1 + v5 * v4 / v6))
+    complexity:
+    vars:
+        v1:
+          name: m
+          type: (float, positive)
+          units: [0, 0, 1, 0, 0]
+          sample_range: [1.0e-30, 1.0e-28]
+          sample_type: [log, pos]
+        v2:
+          name: p
+          type: (float)
+          units: [1, -1, 1, 0, 0]
+          sample_range: [1.0e-9, 1.0e-7]
+          sample_type: [log, pos_neg]
+        v3:
+          name: omega
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos_neg]
+        v4:
+          name: x
+          type: (float)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos_neg]
+        v5:
+          name: alpha
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e-1, 1.0e1]
+          sample_type: [log, pos_neg]
+        v6:
+          name: y
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e-11, 1.0e-9]
+          sample_type: [log, pos]
+        v0:
+          name: E_n
+          type: (float, positive)
+          units: [2, -2, 1, 0, 0]
+    constraints:
+        - v1 != 0
+        - v6 != 0
+B18:
+    difficulty: medium
+    name: cosmological_density
+    feyn_name: 15.2.1 Weinberg
+    raw: 3 / (8 * pi * G) * (c ^ 2 * k_f / r ^ 2 + H_G ^ 2)
+    prp: 3 / (8 * 3.1415926535897 * 6.67430e-11) * (2.99792458e8 ^ 2 * v1 / v2 ^ 2 + v3 ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: k_f
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v2:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v3:
+          name: H_G
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0, 1.0e2]
+          sample_type: [log, pos_neg]
+        v0:
+          name: rho_0
+          type: (float)
+          units: [-3, 0, 1, 0, 0]
+    constants:
+        G:
+          name: gravitational constant
+          value: 6.67430e-11
+          unit:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v2 != 0
+B19:
+    difficulty: hard
+    name: cosmological_pressure
+    feyn_name: 15.2.2 Weinberg
+    raw: -1 / (8 * pi * G) * (c ^ 4 * k_f / r ^ 2 + H_G ^ 2 * c ^ 2 * (1 - 2 * alpha))
+    prp: -1 / (8 * 3.1415926535897 * 6.67430e-11) * (2.99792458e8 ^ 4 * v1 / v2 ^ 2 + v3 ^ 2 * 2.99792458e8 ^ 2 * (1 - 2 * v4))
+    complexity:
+    vars:
+        v1:
+          name: k_f
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [1.0e1, 1.0e3]
+          sample_type: [log, pos_neg]
+        v2:
+          name: r
+          type: (float, positive)
+          units: [1, 0, 0, 0, 0]
+          sample_range: [1.0e8, 1.0e10]
+          sample_type: [log, pos]
+        v3:
+          name: H_G
+          type: (float)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0, 1.0e2]
+          sample_type: [log, pos]
+        v4:
+          name: alpha
+          type: (float)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [-10, 10]
+          sample_type: [uni, pos]
+        v0:
+          name: pr
+          type: (float, positive)
+          units: [-1, -2, 1, 0, 0]
+    constants:
+        G:
+          name: gravitational constant
+          value: 6.67430e-11
+          unit:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
+        - v2 != 0
+B20:
+    difficulty: hard
+    name: thomson_scattering_cross_section
+    feyn_name: Klein-Nishina (13.132 Schwarz)
+    raw: 1 / (4 * pi) * 7.2973525693e-3 ^ 2 * 6.626e-34 ^ 2 / (9.10938356e-31 ^ 2 * c ^ 2) * (omega_0 / omega) ^ 2 * (omega_0 / omega + omega / omega_0 - sin(beta) ^ 2)
+    prp: 1 / (4 * 3.1415926535897) * 7.2973525693e-3 ^ 2 * 6.626e-34 ^ 2 / (9.10938356e-31 ^ 2 * 2.99792458e8 ^ 2) * (v1 / v2) ^ 2 * (v1 / v2 + v2 / v1 - sin(v3) ^ 2)
+    complexity:
+    vars:
+        v1:
+          name: omega_0
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos]
+        v2:
+          name: omega
+          type: (float, positive)
+          units: [0, -1, 0, 0, 0]
+          sample_range: [1.0e9, 1.0e11]
+          sample_type: [log, pos]
+        v3:
+          name: beta
+          type: (float, positive)
+          units: [0, 0, 0, 0, 0]
+          sample_range: [0, 2 * pi]
+          sample_type: [uni, pos]
+        v0:
+          name: A
+          type: (float)
+          units: [2, 0, 0, 0, 0]
+    constants:
+        c:
+          name: speed of light
+          value: 2.99792458e8
+          unit:
+    constraints:
