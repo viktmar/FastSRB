@@ -62,8 +62,8 @@ function sample_points(low::Float64, upp::Float64, n_points::Int64; method="rand
     return arr
 end
 
-# function count_expr(expr)
-#     !(expr isa Expr) && return 1
-#     return sum(count_expr(a) for a in  expr.args)
-# end
+function count_expr(expr)
+    !(expr isa Expr) && return 1
+    return sum(count_expr(a) for a in  expr.args)
+end
 
