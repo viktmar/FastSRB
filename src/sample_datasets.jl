@@ -86,9 +86,11 @@ end
 # ==================================================================================================
 # sampling
 # ==================================================================================================
+
+# TODO: function to println overview of equations
+
 function sample_dataset(
-    eq_id,
-    main_bench;
+    eq_id::String;
     n_points   = 100,
     method     = "random",
     max_trials = 100,
@@ -97,19 +99,41 @@ function sample_dataset(
         :neg, :sin, :cos, :tanh, :sqrt, :exp, :log, # unary operators
         [Symbol("v$i") for i in 1:100]...],         # variables v1, ..., v100
 )
-    # path = joinpath(dirname(pathof(SRSD)), "..", "data", "srsd_equations.yaml")
-    # path = joinpath(@__DIR__, "srsd_equations.yaml")
-    # main_bench = YAML.load_file(path; dicttype=OrderedDict{String,Any})
-
     # extract correct equation
-    @assert eq_id in main_bench.keys "could not find eq_id"
-    val       = main_bench[eq_id]
-    eq_string = val["prp"]
-    vars_info = val["vars"]
+    @assert eq_id in MAIN_BENCH.keys "could not find eq_id"
 
+    val = MAIN_BENCH[eq_id]
+
+    return sample_dataset(
+        val;
+        n_points   = n_points,
+        method     = method,
+        max_trials = max_trials,
+        allowed_equation_elements = allowed_equation_elements
+    )
+end
+
+function sample_dataset(
+    val::OrderedDict;
+    n_points   = 100,
+    method     = "random",
+    max_trials = 100,
+    allowed_equation_elements = [
+        :+, :-, :*, :/, :^,                         # binary operators
+        :neg, :sin, :cos, :tanh, :sqrt, :exp, :log, # unary operators
+        [Symbol("v$i") for i in 1:100]...],         # variables v1, ..., v100
+)
+
+    eq_string = val["prp"]
+    # make sure no malicious code
+    for r in extract_operands_operators(eq_string)
+        @assert r in allowed_equation_elements || r isa Number "$r not valid operator or operand"
+    end
+
+    # sample independet variables # ----------------------------------------------------------------
+    vars_info = val["vars"]
     global data = zeros(n_points, length(vars_info)) # global required for eval to know about data
 
-    # sample variables
     for i in 1:length(vars_info)-1 # TODO: change to point by point basis?
         distr, pos_neg = vars_info["v$i"]["sample_type"]
         low, upp       = vars_info["v$i"]["sample_range"]
@@ -128,11 +152,6 @@ function sample_dataset(
         )
     end
 
-    # make sure no malicious code
-    for r in extract_operands_operators(eq_string)
-        @assert r in allowed_equation_elements || r isa Number "$r not valid operator or operand"
-    end
-
     # replace the vi with data[:, i]
     str = eq_string
     for i in 1:length(vars_info)-1
@@ -140,12 +159,19 @@ function sample_dataset(
     end
     str = "@. " * str
 
+    # calculate dependent variable # ---------------------------------------------------------------
     pred = try
         pred = eval(Meta.parse(str))
     catch
         if max_trials > 0
             println("resampling data set...")
-            return sample_dataset(name, main_bench; n_points=n_points, method=method, max_trials = max_trials - 1)
+            return sample_dataset(
+                val;
+                n_points   = n_points,
+                method     = method,
+                max_trials = max_trials - 1,
+                allowed_equation_elements = allowed_equation_elements
+            )
         else
             throw("cannot sample data")
         end
@@ -153,10 +179,17 @@ function sample_dataset(
 
     data[:, end] .= pred
 
+    # redo if non-finite
     if isfinite(sum(data))
         return data, eq_string
     else
-        return sample_dataset(name, main_bench; n_points=n_points, method=method, max_trials = max_trials - 1)
+        return sample_dataset(
+            val;
+            n_points   = n_points,
+            method     = method,
+            max_trials = max_trials - 1,
+            allowed_equation_elements = allowed_equation_elements
+        )
     end
 end
 
@@ -168,10 +201,10 @@ function sample_points(
     low::Float64,
     upp::Float64,
     n_points::Int64;
-    method="random",
-    distr="log",
-    pos_neg="pos_neg",
-    integer=false
+    method  = "random",
+    distr   = "log",
+    pos_neg = "pos_neg",
+    integer = false
 )
     @assert method  in ("range", "random")
     @assert distr   in ("uni", "log")
