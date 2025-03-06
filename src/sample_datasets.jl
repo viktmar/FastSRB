@@ -87,8 +87,6 @@ end
 # sampling
 # ==================================================================================================
 
-# TODO: function to println overview of equations
-
 function sample_dataset(
     eq_id::String;
     n_points   = 100,
@@ -98,19 +96,32 @@ function sample_dataset(
         :+, :-, :*, :/, :^,                         # binary operators
         :neg, :sin, :cos, :tanh, :sqrt, :exp, :log, # unary operators
         [Symbol("v$i") for i in 1:100]...],         # variables v1, ..., v100
+    incremental = false,
 )
     # extract correct equation
-    @assert eq_id in MAIN_BENCH.keys "could not find eq_id"
+    @assert eq_id in MAIN_BENCH[].keys "could not find eq_id"
 
-    val = MAIN_BENCH[eq_id]
+    method == "range" && incremental && @warn "Sampling along a range does not make sense incrementally. Consider setting incremental=false"
 
-    return sample_dataset(
-        val;
-        n_points   = n_points,
-        method     = method,
-        max_trials = max_trials,
-        allowed_equation_elements = allowed_equation_elements
-    )
+    val = MAIN_BENCH[][eq_id]
+
+    if incremental
+        return sample_dataset_incremental(
+            val;
+            n_points   = n_points,
+            method     = method,
+            max_trials = max_trials,
+            allowed_equation_elements = allowed_equation_elements
+        )
+    else
+        return sample_dataset(
+            val;
+            n_points   = n_points,
+            method     = method,
+            max_trials = max_trials,
+            allowed_equation_elements = allowed_equation_elements
+        )
+    end
 end
 
 function sample_dataset(
@@ -130,11 +141,20 @@ function sample_dataset(
         @assert r in allowed_equation_elements || r isa Number "$r not valid operator or operand"
     end
 
-    # sample independet variables # ----------------------------------------------------------------
+    # prepare data variable -> needs to be global for eval to wark
     vars_info = val["vars"]
-    global data = zeros(n_points, length(vars_info)) # global required for eval to know about data
+    global data = zeros(n_points, length(vars_info))
 
-    for i in 1:length(vars_info)-1 # TODO: change to point by point basis?
+    # replace the vi with data[:, i]
+    str = eq_string
+    for i in 1:length(vars_info)-1
+        eq_string = replace(eq_string, "v$i" => "data[:, $i]")
+    end
+    eq_string = "@. " * eq_string
+    eq_expr = Meta.parse(eq_string)
+
+    # sample independet variables # ----------------------------------------------------------------
+    for i in 1:length(vars_info)-1
         distr, pos_neg = vars_info["v$i"]["sample_type"]
         low, upp       = vars_info["v$i"]["sample_range"]
 
@@ -152,20 +172,13 @@ function sample_dataset(
         )
     end
 
-    # replace the vi with data[:, i]
-    str = eq_string
-    for i in 1:length(vars_info)-1
-        str = replace(str, "v$i" => "data[:, $i]")
-    end
-    str = "@. " * str
-
     # calculate dependent variable # ---------------------------------------------------------------
     pred = try
-        pred = eval(Meta.parse(str))
+        pred = eval(eq_expr)
     catch
         if max_trials > 0
             println("resampling data set...")
-            return sample_dataset(
+            sample_dataset(
                 val;
                 n_points   = n_points,
                 method     = method,
@@ -173,15 +186,15 @@ function sample_dataset(
                 allowed_equation_elements = allowed_equation_elements
             )
         else
-            throw("cannot sample data")
+            throw("cannot sample data. keeps raising exceptions. try setting incremental=true")
         end
     end
 
     data[:, end] .= pred
 
-    # redo if non-finite
+    # redo if non-finite # -------------------------------------------------------------------------
     if isfinite(sum(data))
-        return data, eq_string
+        return data
     else
         return sample_dataset(
             val;
@@ -191,6 +204,78 @@ function sample_dataset(
             allowed_equation_elements = allowed_equation_elements
         )
     end
+end
+
+
+function sample_and_eval_one_point(eq_expr, vars_info, vars, method; max_trials=100)
+    # sample one set of independet variables
+    vars[1:end-1] .= map(1:length(vars_info)-1) do i
+        distr, pos_neg = vars_info["v$i"]["sample_type"]
+        low, upp       = vars_info["v$i"]["sample_range"]
+
+        integer = false
+        if distr == "int"
+            distr = "uni"
+            integer = true
+        end
+
+        return sample_points(low, upp, 1,
+            method  = method,
+            distr   = distr,
+            pos_neg = pos_neg,
+            integer = integer
+        )[1]
+    end
+
+    # try eval for dependent variable. if fails or non-finite, try again with new independet variables
+    try
+        vars[end] = eval(eq_expr)
+        if !isfinite(sum(vars))
+            return sample_and_eval_one_point(eq_expr, vars_info, vars, method; max_trials = max_trials - 1)
+        else
+            return vars
+        end
+    catch
+        if max_trials > 0
+            return sample_and_eval_one_point(eq_expr, vars_info, vars, method; max_trials = max_trials - 1)
+        else
+            throw("failed repeated resampling.")
+        end
+    end
+end
+
+function sample_dataset_incremental(
+    val::OrderedDict;
+    n_points   = 100,
+    method     = "random",
+    max_trials = 100,
+    allowed_equation_elements = [
+        :+, :-, :*, :/, :^,                         # binary operators
+        :neg, :sin, :cos, :tanh, :sqrt, :exp, :log, # unary operators
+        [Symbol("v$i") for i in 1:100]...],         # variables v1, ..., v100
+    )
+
+    eq_string = val["prp"]
+    # make sure no malicious code
+    for r in extract_operands_operators(eq_string)
+        @assert r in allowed_equation_elements || r isa Number "$r not valid operator or operand"
+    end
+
+    # prepare data variable -> needs to be global for eval to wark
+    vars_info = val["vars"]
+    global vars = fill(0.0, length(vars_info))
+
+    # replace the vi with vars[i]
+    for i in 1:length(vars_info)-1
+        eq_string = replace(eq_string, "v$i" => "vars[$i]")
+    end
+    eq_expr = Meta.parse(eq_string)
+
+    return copy(reduce(
+        hcat, copy(
+            sample_and_eval_one_point(eq_expr, vars_info, vars, method; max_trials = max_trials)
+        ) for v in 1:n_points
+    )')
 end
 
 """ sample n_points between low and upp with method='random' or 'range' using a
