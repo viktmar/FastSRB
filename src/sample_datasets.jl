@@ -24,8 +24,8 @@ digits and return the result as a string.
 
 # Examples
 ```julia
-SRSD.round_equation_string("2.3456 + 3.14159 * x")    # Returns "2.35 + 3.14x"
-SRSD.round_equation_string(:(1.2345 + sin(x)))        # Returns modified Expr, converts to "1.23 + sin(x)"
+SRSD.round_equation_string("2.3456 + 3.14159 * x") # Returns "2.35 + 3.14x"
+SRSD.round_equation_string(:(1.2345 + sin(x)))     # Returns modified Expr, converts to "1.23 + sin(x)"
 ```
 """
 round_equation_string(str::String; sigdigits=3) = string(round_equation_string(Meta.parse(str), sigdigits=sigdigits))
@@ -54,9 +54,9 @@ the n-ary expression tree.
 
 # Examples
 ```julia
-SRSD.get_nary_compl("a + b + c")    # Returns 4 (from :(+), :a, :b, :c)
-SRSD.get_nary_compl("2 * x")        # Returns 3 (from :(*), 2, :x)
-SRSD.get_nary_compl(:x)             # Returns 1 (single symbol)
+SRSD.get_nary_compl("a + b + c") # Returns 4 (from :(+), :a, :b, :c)
+SRSD.get_nary_compl("2 * x")     # Returns 3 (from :(*), 2, :x)
+SRSD.get_nary_compl(:x)          # Returns 1 (single symbol)
 ```
 """
 get_nary_compl(expr::String) = get_nary_compl(Meta.parse(expr))
@@ -83,9 +83,9 @@ of the expression.
 
 # Examples
 ```julia
-SRSD.get_binary_compl("a + b + c")    # Returns 5 (from [:(+), :(+), :a, :b, :c])
-SRSD.get_binary_compl("2 * x")        # Returns 3 (from [:(*), 2, :x])
-SRSD.get_binary_compl(:x)             # Returns 1 (from [:x])
+SRSD.get_binary_compl("a + b + c") # Returns 5 (from [:(+), :(+), :a, :b, :c])
+SRSD.get_binary_compl("2 * x")     # Returns 3 (from [:(*), 2, :x])
+SRSD.get_binary_compl(:x)          # Returns 1 (from [:x])
 ```
 """
 get_binary_compl(expr::String) = get_binary_compl(Meta.parse(expr))
@@ -105,10 +105,10 @@ converted to repeated binary operations.
 
 # Examples
 ```julia
-SRSD.expr_to_prefix(:(a + b + c))     # Returns [:(+), :(+), :a, :b, :c]
-SRSD.expr_to_prefix(:(2 * x + 3))     # Returns [:(+), :(*), 2, :x, 3]
-SRSD.expr_to_prefix(1//2)             # Returns [0.5]
-SRSD.expr_to_prefix(:x)               # Returns [:x]
+SRSD.expr_to_prefix(:(a + b + c)) # Returns [:(+), :(+), :a, :b, :c]
+SRSD.expr_to_prefix(:(2 * x + 3)) # Returns [:(+), :(*), 2, :x, 3]
+SRSD.expr_to_prefix(1//2)         # Returns [0.5]
+SRSD.expr_to_prefix(:x)           # Returns [:x]
 ```
 """
 expr_to_prefix(expr::Expr) = expr_to_prefix(expr.args)
@@ -145,8 +145,8 @@ in the expression.
 
 # Examples
 ```julia
-SRSD.extract_operands_operators("2 + sin(x)")    # Returns [:+, 2, :sin, :x]
-SRSD.extract_operands_operators(:(3 * v1 - 4))   # Returns [:-, :*, 3, :v1, 4]
+SRSD.extract_operands_operators("2 + sin(x)")  # Returns [:+, 2, :sin, :x]
+SRSD.extract_operands_operators(:(3 * v1 - 4)) # Returns [:-, :*, 3, :v1, 4]
 ```
 """
 extract_operands_operators(expr::String) = extract_operands_operators(Meta.parse(expr))
@@ -181,9 +181,9 @@ A string with all operators explicitly included.
 
 # Examples
 ```julia
-SRSD.string_expl("2v1")          # Returns "(2 * v1)"
-SRSD.string_expl(:(sin(x)))      # Returns "sin(x)"
-SRSD.string_expl(:(2 + 3 * x))   # Returns "(2 + (3 * x))"
+SRSD.string_expl("2v1")        # Returns "(2 * v1)"
+SRSD.string_expl(:(sin(x)))    # Returns "sin(x)"
+SRSD.string_expl(:(2 + 3 * x)) # Returns "(2 + (3 * x))"
 ```
 """
 string_expl(e::String) = string_expl(Meta.parse(e))
@@ -201,7 +201,6 @@ end
 # ==================================================================================================
 # sampling
 # ==================================================================================================
-
 """
     sample_dataset(eq_id::String; n_points=100, method="random", max_trials=100,
                       allowed_equation_elements=[...], incremental=false)
