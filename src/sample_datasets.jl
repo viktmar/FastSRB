@@ -92,7 +92,10 @@ function sample_dataset(
     n_points   = 100,
     method     = "random",
     max_trials = 100,
-    allowed_equation_elements = [:neg, :sin, :cos, :tanh, :sqrt, :exp, :log, :+, :-, :*, :/, :^, [Symbol("v$i") for i in 1:100]...],
+    allowed_equation_elements = [
+        :+, :-, :*, :/, :^,                         # binary operators
+        :neg, :sin, :cos, :tanh, :sqrt, :exp, :log, # unary operators
+        [Symbol("v$i") for i in 1:100]...],         # variables v1, ..., v100
 )
     # path = joinpath(dirname(pathof(SRSD)), "..", "data", "srsd_equations.yaml")
     # path = joinpath(@__DIR__, "srsd_equations.yaml")
