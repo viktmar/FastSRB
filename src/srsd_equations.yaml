@@ -3054,7 +3054,7 @@ II.13.34:
     constraints:
         - 2.99792458e8 ^ 2 - v2 ^ 2 > 0
 II.24.17:
-    difficulty: impossible  # hard / sampling does not work
+    difficulty: hard
     name: wavevector
     raw: sqrt(omega ^ 2 / c ^ 2 - pi ^ 2 / d ^ 2)
     prp: sqrt(v1 ^ 2 / 2.99792458e8 ^ 2 - 3.1415926535897 ^ 2 / v2 ^ 2)
@@ -3495,7 +3495,7 @@ B3:
     constraints:
         - v2 * cos(v3 - v4) != -1
 B4:
-    difficulty: impossible  # hard / sampling does not work
+    difficulty: hard
     name: quantum_angular_momentum
     feyn_name: 3.16 Goldstein
     raw: sqrt(2 / m * (E_n - U - L ^ 2 / (2 * m * r ^ 2)))
@@ -3647,7 +3647,7 @@ B6:
         - v7 != 0
         - 1 + 2 * v1 * v2 * v3 ^ 2 / (v4 * (v5 * v6 * v7 ^ 2) ^ 2) >= 0
 B7:
-    difficulty: impossible  # hard / sampling does not work
+    difficulty: hard
     name: cosmological_expansion_rate
     feyn_name: Friedman Equation
     raw: sqrt(8 * pi * G * rho / 3 - alpha * c ^ 2 / d ^ 2)
