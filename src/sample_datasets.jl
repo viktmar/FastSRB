@@ -244,6 +244,7 @@ function sample_dataset(
 )
     # extract correct equation
     @assert eq_id in MAIN_BENCH[].keys "could not find eq_id"
+    @assert n_points >= 1
 
     method == "range" && incremental && @warn "Sampling along a range does not make sense incrementally. Consider setting incremental=false"
 
@@ -324,6 +325,7 @@ function sample_dataset(
         :neg, :sin, :cos, :tanh, :sqrt, :exp, :log, # unary operators
         [Symbol("v$i") for i in 1:100]...],         # variables v1, ..., v100
 )
+    @assert n_points >= 1
     eq_string = val["prp"]
     # make sure no malicious code
     for r in extract_operands_operators(eq_string)
@@ -335,8 +337,6 @@ function sample_dataset(
     vars_info = val["vars"]
     @assert length(vars_info) in (n_vars, n_vars+1) "more variables than provided in 'vars'"
 
-    global data = zeros(n_points, n_vars+1)
-
     # replace the vi with data[:, i]
     for i in 1:n_vars
         eq_string = replace(eq_string, "v$i" => "data[:, $i]")
@@ -345,6 +345,7 @@ function sample_dataset(
     eq_expr = Meta.parse(eq_string)
 
     # sample independet variables # ----------------------------------------------------------------
+    global data = zeros(n_points, n_vars+1)
     for i in 1:n_vars
         distr, pos_neg = vars_info["v$i"]["sample_type"]
         low, upp       = vars_info["v$i"]["sample_range"]
@@ -368,7 +369,6 @@ function sample_dataset(
         pred = eval(eq_expr)
     catch
         if max_trials > 0
-            println("resampling data set...")
             sample_dataset(
                 val;
                 n_points   = n_points,
@@ -377,7 +377,7 @@ function sample_dataset(
                 allowed_equation_elements = allowed_equation_elements
             )
         else
-            throw("cannot sample data. keeps raising exceptions. try setting incremental=true")
+            throw(ErrorException("cannot sample data. keeps raising exceptions. try setting incremental=true"))
         end
     end
 
@@ -398,7 +398,7 @@ function sample_dataset(
 end
 
 """
-    sample_and_eval_one_point(eq_expr, vars_info, vars, method; max_trials=100)
+    sample_and_eval_one_point(eq_expr, vars_info, n_vars, method; max_trials=100)
 
 Sample and evaluate a single point for an equation, including independent variables and
 the dependent variable computed from the given expression.
@@ -406,14 +406,13 @@ the dependent variable computed from the given expression.
 # Arguments
 - `eq_expr`: Parsed expression (from Meta.parse) representing the equation
 - `vars_info`: Dictionary containing variable sampling specifications
-- `vars`: Array to store sampled independent variables and computed dependent variable
+- `n_vars`: integer number of variables
 - `method`: Sampling method ("random" or "range") passed to `sample_points`
 - `max_trials=100`: Maximum number of resampling attempts if evaluation fails
 
 # Returns
-The `vars` array with sampled independent variables in `vars[1:end-1]` and the computed
-dependent variable in `vars[end]`.
-
+An array with sampled independent variables in and the calculated dependend one
+at the last index.
 # Behavior
 1. Samples one value for each independent variable using `sample_points`
 2. Evaluates `eq_expr` to compute the dependent variable
@@ -421,18 +420,19 @@ dependent variable in `vars[end]`.
 
 # Examples
 ```julia
-eq_expr = Meta.parse("vars[1] + sin(vars[2])")
+eq_expr = Meta.parse("data[1] + sin(data[2])")
 vars_info = Dict(
     "v1" => Dict("sample_type" => ("uni", "pos"), "sample_range" => (0.0, 1.0)),
     "v2" => Dict("sample_type" => ("uni", "pos_neg"), "sample_range" => (-.01, 1.0))
 )
-global vars = zeros(3)
-result = SRSD.sample_and_eval_one_point(eq_expr, vars_info, vars, "random")
+n_vars = 2
+result = SRSD.sample_and_eval_one_point(eq_expr, vars_info, n_vars, "random")
 ```
 """
-function sample_and_eval_one_point(eq_expr, vars_info, vars, method; max_trials=100)
+function sample_and_eval_one_point(eq_expr, vars_info, n_vars, method; max_trials=100)
     # sample one set of independet variables
-    vars[1:end-1] .= map(1:length(vars)-1) do i
+    global data = zeros(n_vars+1)
+    data[1:end-1] .= map(1:n_vars) do i
         distr, pos_neg = vars_info["v$i"]["sample_type"]
         low, upp       = vars_info["v$i"]["sample_range"]
 
@@ -452,17 +452,17 @@ function sample_and_eval_one_point(eq_expr, vars_info, vars, method; max_trials=
 
     # try eval for dependent variable. if fails or non-finite, try again with new independet variables
     try
-        vars[end] = eval(eq_expr)
-        if !isfinite(sum(vars))
-            return sample_and_eval_one_point(eq_expr, vars_info, vars, method; max_trials = max_trials - 1)
+        data[end] = eval(eq_expr)
+        if !isfinite(sum(data))
+            return sample_and_eval_one_point(eq_expr, vars_info, n_vars, method; max_trials = max_trials - 1)
         else
-            return vars
+            return copy(data)
         end
     catch
         if max_trials > 0
-            return sample_and_eval_one_point(eq_expr, vars_info, vars, method; max_trials = max_trials - 1)
+            return sample_and_eval_one_point(eq_expr, vars_info, n_vars, method; max_trials = max_trials - 1)
         else
-            throw("failed repeated resampling.")
+            throw(ErrorException("failed repeated resampling."))
         end
     end
 end
@@ -516,6 +516,7 @@ function sample_dataset_incremental(
         :neg, :sin, :cos, :tanh, :sqrt, :exp, :log, # unary operators
         [Symbol("v$i") for i in 1:100]...],         # variables v1, ..., v100
     )
+    @assert n_points >= 1
 
     eq_string = val["prp"]
     # make sure no malicious code
@@ -527,17 +528,16 @@ function sample_dataset_incremental(
     n_vars = maximum(parse(Int, m.captures[1]) for m in eachmatch(r"v(\d+)", eq_string))
     vars_info = val["vars"]
     @assert length(vars_info) in (n_vars, n_vars+1) "more variables than provided in 'vars'"
-    global vars = fill(0.0, n_vars+1)
 
-    # replace the vi with vars[i]
+    # replace the vi with data[i]
     for i in 1:n_vars
-        eq_string = replace(eq_string, "v$i" => "vars[$i]")
+        eq_string = replace(eq_string, "v$i" => "data[$i]")
     end
     eq_expr = Meta.parse(eq_string)
 
     return copy(reduce(
         hcat, copy(
-            sample_and_eval_one_point(eq_expr, vars_info, vars, method; max_trials = max_trials)
+            sample_and_eval_one_point(eq_expr, vars_info, n_vars, method; max_trials = max_trials)
         ) for v in 1:n_points
     )')
 end
@@ -583,9 +583,14 @@ function sample_points(
     @assert distr   in ("uni", "log")
     @assert pos_neg in ("pos", "neg", "pos_neg")
     @assert low <= upp
+    @assert n_points >= 1
 
     low = Float64(low)
     upp = Float64(upp)
+
+    if low == upp
+        return [upp for _ in 1:n_points]
+    end
 
     (n_points == 1 && method == "range") && @warn "sampling one point in mode='range' may not be sensible"
 
