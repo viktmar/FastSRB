@@ -550,8 +550,8 @@ Sample `n_points` values between `low` and `upp` using either random or range-ba
 with optional logarithmic distribution and sign control.
 
 # Arguments
-- `low::Float64`: Lower bound of sampling range
-- `upp::Float64`: Upper bound of sampling range
+- `low::Number`: Lower bound of sampling range
+- `upp::Number`: Upper bound of sampling range
 - `n_points::Int64`: Number of points to sample
 - `method="random"`: Sampling method ("random" for uniform random, "range" for evenly spaced)
 - `distr="log"`: Distribution type ("log" for logarithmic, "uni" for uniform)
@@ -571,8 +571,8 @@ points = SRSD.sample_points(0.0, 10.0, 4, method="range", distr="uni", pos_neg="
 ```
 """
 function sample_points(
-    low::Float64,
-    upp::Float64,
+    low::Number,
+    upp::Number,
     n_points::Int64;
     method  = "random",
     distr   = "log",
@@ -583,6 +583,9 @@ function sample_points(
     @assert distr   in ("uni", "log")
     @assert pos_neg in ("pos", "neg", "pos_neg")
     @assert low <= upp
+
+    low = Float64(low)
+    upp = Float64(upp)
 
     (n_points == 1 && method == "range") && @warn "sampling one point in mode='range' may not be sensible"
 
