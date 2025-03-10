@@ -197,7 +197,7 @@ using SRSD
         @test length(result) == 3
         @test 0 <= result[1] <= 1
         @test -1 <= result[2] <= 1
-        @test isapprox(result[3], result[1] + sin(result[2]), atol=1e-10) # TODO: fails
+        @test isapprox(result[3], result[1] + sin(result[2]), atol=1e-10)
 
         # Integer sampling
         vars_info_int = Dict(
@@ -237,7 +237,7 @@ using SRSD
         @test all(isfinite, result)
         @test all(0 .<= result[:, 1] .<= 1)
         @test all(-1 .<= result[:, 2] .<= 0)
-        @test isapprox(result[:, 3], result[:, 1] .* cos.(result[:, 2]), atol=1e-10) # TODO: fails
+        @test isapprox(result[:, 3], result[:, 1] .* cos.(result[:, 2]), atol=1e-10)
 
         # Invalid variable count
         val_invalid = deepcopy(val)
