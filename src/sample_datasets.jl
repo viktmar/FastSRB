@@ -24,8 +24,8 @@ digits and return the result as a string.
 
 # Examples
 ```julia
-SRSD.round_equation_string("2.3456 + 3.14159 * x") # Returns "2.35 + 3.14x"
-SRSD.round_equation_string(:(1.2345 + sin(x)))     # Returns modified Expr, converts to "1.23 + sin(x)"
+FastSRB.round_equation_string("2.3456 + 3.14159 * x") # Returns "2.35 + 3.14x"
+FastSRB.round_equation_string(:(1.2345 + sin(x)))     # Returns modified Expr, converts to "1.23 + sin(x)"
 ```
 """
 round_equation_string(str::String; sigdigits=3) = string(round_equation_string(Meta.parse(str), sigdigits=sigdigits))
@@ -54,9 +54,9 @@ the n-ary expression tree.
 
 # Examples
 ```julia
-SRSD.get_nary_compl("a + b + c") # Returns 4 (from :(+), :a, :b, :c)
-SRSD.get_nary_compl("2 * x")     # Returns 3 (from :(*), 2, :x)
-SRSD.get_nary_compl(:x)          # Returns 1 (single symbol)
+FastSRB.get_nary_compl("a + b + c") # Returns 4 (from :(+), :a, :b, :c)
+FastSRB.get_nary_compl("2 * x")     # Returns 3 (from :(*), 2, :x)
+FastSRB.get_nary_compl(:x)          # Returns 1 (single symbol)
 ```
 """
 get_nary_compl(expr::String) = get_nary_compl(Meta.parse(expr))
@@ -83,9 +83,9 @@ of the expression.
 
 # Examples
 ```julia
-SRSD.get_binary_compl("a + b + c") # Returns 5 (from [:(+), :(+), :a, :b, :c])
-SRSD.get_binary_compl("2 * x")     # Returns 3 (from [:(*), 2, :x])
-SRSD.get_binary_compl(:x)          # Returns 1 (from [:x])
+FastSRB.get_binary_compl("a + b + c") # Returns 5 (from [:(+), :(+), :a, :b, :c])
+FastSRB.get_binary_compl("2 * x")     # Returns 3 (from [:(*), 2, :x])
+FastSRB.get_binary_compl(:x)          # Returns 1 (from [:x])
 ```
 """
 get_binary_compl(expr::String) = get_binary_compl(Meta.parse(expr))
@@ -105,10 +105,10 @@ converted to repeated binary operations.
 
 # Examples
 ```julia
-SRSD.expr_to_prefix(:(a + b + c)) # Returns [:(+), :(+), :a, :b, :c]
-SRSD.expr_to_prefix(:(2 * x + 3)) # Returns [:(+), :(*), 2, :x, 3]
-SRSD.expr_to_prefix(1//2)         # Returns [0.5]
-SRSD.expr_to_prefix(:x)           # Returns [:x]
+FastSRB.expr_to_prefix(:(a + b + c)) # Returns [:(+), :(+), :a, :b, :c]
+FastSRB.expr_to_prefix(:(2 * x + 3)) # Returns [:(+), :(*), 2, :x, 3]
+FastSRB.expr_to_prefix(1//2)         # Returns [0.5]
+FastSRB.expr_to_prefix(:x)           # Returns [:x]
 ```
 """
 expr_to_prefix(expr::Expr) = expr_to_prefix(expr.args)
@@ -145,8 +145,8 @@ in the expression.
 
 # Examples
 ```julia
-SRSD.extract_operands_operators("2 + sin(x)")  # Returns [:+, 2, :sin, :x]
-SRSD.extract_operands_operators(:(3 * v1 - 4)) # Returns [:-, :*, 3, :v1, 4]
+FastSRB.extract_operands_operators("2 + sin(x)")  # Returns [:+, 2, :sin, :x]
+FastSRB.extract_operands_operators(:(3 * v1 - 4)) # Returns [:-, :*, 3, :v1, 4]
 ```
 """
 extract_operands_operators(expr::String) = extract_operands_operators(Meta.parse(expr))
@@ -181,9 +181,9 @@ A string with all operators explicitly included.
 
 # Examples
 ```julia
-SRSD.string_expl("2v1")        # Returns "(2 * v1)"
-SRSD.string_expl(:(sin(x)))    # Returns "sin(x)"
-SRSD.string_expl(:(2 + 3 * x)) # Returns "(2 + (3 * x))"
+FastSRB.string_expl("2v1")        # Returns "(2 * v1)"
+FastSRB.string_expl(:(sin(x)))    # Returns "sin(x)"
+FastSRB.string_expl(:(2 + 3 * x)) # Returns "(2 + (3 * x))"
 ```
 """
 string_expl(e::String) = string_expl(Meta.parse(e))
@@ -225,10 +225,10 @@ A sampled dataset based on the specified equation and parameters.
 # Examples
 ```julia
 # Basic random sampling
-SRSD.sample_dataset("II.38.3", n_points=50)
+FastSRB.sample_dataset("II.38.3", n_points=50)
 
 # Range sampling with specific elements
-SRSD.sample_dataset("II.38.3", method="range")
+FastSRB.sample_dataset("II.38.3", method="range")
 ```
 """
 function sample_dataset(
@@ -312,7 +312,7 @@ val = OrderedDict(
         )
     )
 )
-data = SRSD.sample_dataset(val, n_points = 50)
+data = FastSRB.sample_dataset(val, n_points = 50)
 ```
 """
 function sample_dataset(
@@ -426,7 +426,7 @@ vars_info = Dict(
     "v2" => Dict("sample_type" => ("uni", "pos_neg"), "sample_range" => (-.01, 1.0))
 )
 n_vars = 2
-result = SRSD.sample_and_eval_one_point(eq_expr, vars_info, n_vars, "random")
+result = FastSRB.sample_and_eval_one_point(eq_expr, vars_info, n_vars, "random")
 ```
 """
 function sample_and_eval_one_point(eq_expr, vars_info, n_vars, method; max_trials=100)
@@ -503,7 +503,7 @@ val = OrderedDict(
         "v2" => Dict("sample_type" => ("uni", "pos_neg"), "sample_range" => (-1.0, 1.0))
     )
 )
-data = SRSD.sample_dataset_incremental(val, n_points=20)
+data = FastSRB.sample_dataset_incremental(val, n_points=20)
 ```
 """
 function sample_dataset_incremental(
@@ -564,10 +564,10 @@ A vector of length `n_points` containing sampled values.
 # Examples
 ```julia
 # Random logarithmic sampling, mixed signs
-points = SRSD.sample_points(1.0, 100.0, 5, distr="log", pos_neg="pos_neg")
+points = FastSRB.sample_points(1.0, 100.0, 5, distr="log", pos_neg="pos_neg")
 
 # Evenly spaced uniform sampling, positive only
-points = SRSD.sample_points(0.0, 10.0, 4, method="range", distr="uni", pos_neg="pos")
+points = FastSRB.sample_points(0.0, 10.0, 4, method="range", distr="uni", pos_neg="pos")
 ```
 """
 function sample_points(

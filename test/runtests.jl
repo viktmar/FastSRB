@@ -3,10 +3,10 @@ using Test
 using Statistics: Uniform
 using OrderedCollections: OrderedDict
 using Random: shuffle!
-using SRSD
+using FastSRB
 
 # Comprehensive test suite
-@testset "SRSD.jl Comprehensive Tests" begin
+@testset "FastSRB.jl Comprehensive Tests" begin
 
     ### round_equation_string
     @testset "round_equation_string" begin
