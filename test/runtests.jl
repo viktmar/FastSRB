@@ -151,7 +151,7 @@ using SRSD
     ### sample_dataset (OrderedDict)
     @testset "sample_dataset (OrderedDict)" begin
         val = OrderedDict(
-            "prp" => "v1 + sin(v2)",
+            "prepared" => "v1 + sin(v2)",
             "vars" => OrderedDict(
                 "v1" => OrderedDict("sample_type" => ("uni", "pos"), "sample_range" => (0.0, 1.0)),
                 "v2" => OrderedDict("sample_type" => ("uni", "pos_neg"), "sample_range" => (-1.0, 1.0))
@@ -168,12 +168,12 @@ using SRSD
 
         # Invalid equation
         val_invalid = deepcopy(val)
-        val_invalid["prp"] = "v1 + invalid_func(v2)"
+        val_invalid["prepared"] = "v1 + invalid_func(v2)"
         @test_throws AssertionError sample_dataset(val_invalid)
 
         # Max trials exhaustion
         val_div = OrderedDict(
-            "prp" => "sqrt(v1)",
+            "prepared" => "sqrt(v1)",
             "vars" => OrderedDict(
                 "v1" => OrderedDict("sample_type" => ("uni", "pos"), "sample_range" => (-0.1, 0.0))
             )
@@ -224,7 +224,7 @@ using SRSD
     ### sample_dataset_incremental
     @testset "sample_dataset_incremental" begin
         val = OrderedDict(
-            "prp" => "v1 * cos(v2)",
+            "prepared" => "v1 * cos(v2)",
             "vars" => OrderedDict(
                 "v1" => OrderedDict("sample_type" => ("uni", "pos"), "sample_range" => (0.0, 1.0)),
                 "v2" => OrderedDict("sample_type" => ("uni", "pos"), "sample_range" => (-1.0, 0.0))

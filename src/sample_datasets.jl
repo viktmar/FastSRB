@@ -277,7 +277,7 @@ Sample a dataset from an equation specified in an OrderedDict, generating indepe
 and calculating the dependent variable based on the equation string.
 
 # Arguments
-- `val::OrderedDict`: Dictionary containing equation data with "prp" (equation string) and "vars" (variable info)
+- `val::OrderedDict`: Dictionary containing equation data with "prepared" (equation string) and "vars" (variable info)
 - `n_points=100`: Number of data points to sample
 - `method="random"`: Sampling method ("random" or "range")
 - `max_trials=100`: Maximum number of resampling attempts if errors occur
@@ -300,7 +300,7 @@ calculated dependent variable.
 # Examples
 ```julia
 val = OrderedDict(
-    "prp" => "v1 + sin(v2)",
+    "prepared" => "v1 + sin(v2)",
     "vars" => OrderedDict(
         "v1" => OrderedDict(
             "sample_type"  => ("uni", "pos"),
@@ -326,7 +326,7 @@ function sample_dataset(
         [Symbol("v$i") for i in 1:100]...],         # variables v1, ..., v100
 )
     @assert n_points >= 1
-    eq_string = val["prp"]
+    eq_string = val["prepared"]
     # make sure no malicious code
     for r in extract_operands_operators(eq_string)
         @assert r in allowed_equation_elements || r isa Number "$r not valid operator or operand"
@@ -475,7 +475,7 @@ Sample a dataset incrementally, one point at a time, from an equation specified 
 Evaluates the equation for each point independently rather than vectorized.
 
 # Arguments
-- `val::OrderedDict`: Dictionary containing equation data with "prp" (equation string) and "vars" (variable info)
+- `val::OrderedDict`: Dictionary containing equation data with "prepared" (equation string) and "vars" (variable info)
 - `n_points=100`: Number of data points to sample
 - `method="random"`: Sampling method ("random" or "range")
 - `max_trials=100`: Maximum number of sampling attempts per point
@@ -497,7 +497,7 @@ calculated dependent variable, where each column represents one sampled point.
 # Examples
 ```julia
 val = OrderedDict(
-    "prp" => "v1 * cos(v2)",
+    "prepared" => "v1 * cos(v2)",
     "vars" => OrderedDict(
         "v1" => Dict("sample_type" => ("uni", "pos"), "sample_range" => (0.0, 1.0)),
         "v2" => Dict("sample_type" => ("uni", "pos_neg"), "sample_range" => (-1.0, 1.0))
@@ -518,7 +518,7 @@ function sample_dataset_incremental(
     )
     @assert n_points >= 1
 
-    eq_string = val["prp"]
+    eq_string = val["prepared"]
     # make sure no malicious code
     for r in extract_operands_operators(eq_string)
         @assert r in allowed_equation_elements || r isa Number "$r not valid operator or operand"
