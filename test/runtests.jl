@@ -75,6 +75,28 @@ using FastSRB
         @test get_binary_compl(" ") == 1  # Whitespace
     end
 
+    @testset "count_consts" begin
+        # Typical cases
+        @test count_consts("2 + 3") == 2  # Expression with two constants: 2 and 3
+        @test count_consts("x * 4") == 1  # Expression with one constant: 4
+
+        # Single values
+        @test count_consts(42) == 1  # Single integer constant
+        @test count_consts(3.14) == 1  # Single float constant
+        @test count_consts(:x) == 0  # Symbol, not a constant
+
+        # Complex expressions
+        @test count_consts("a + 2 * b") == 1  # Expression with one constant: 2
+        @test count_consts("1 + 2 + 3 + 4") == 4  # Expression with four constants: 1, 2, 3, 4
+        @test count_consts("sin(x) + 3.5 * y") == 1  # Expression with one constant: 3.5
+
+        # Edge cases
+        @test count_consts("") == 0  # Empty string, no constants
+        @test count_consts(" ") == 0  # Whitespace, no constants
+        @test count_consts("x") == 0  # Single variable, not a constant
+        @test count_consts("sin(x) + cos(y)") == 0  # No constants, only variables and functions
+    end
+
     ### expr_to_prefix
     @testset "expr_to_prefix" begin
         # Typical cases

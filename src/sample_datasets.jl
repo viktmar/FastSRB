@@ -92,6 +92,31 @@ get_binary_compl(expr::String) = get_binary_compl(Meta.parse(expr))
 get_binary_compl(expr)         = length(expr_to_prefix(expr))
 
 """
+    count_consts(expr::Expr)
+    count_consts(expr::String)
+
+Count the number of numeric constants in a Julia expression or string.
+
+# Arguments
+- `expr`: Can be a string representing a valid Julia expression, an `Expr` object, or a numeric value.
+
+# Returns
+An integer representing the count of numeric constants (subtypes of `Number`) in the expression.
+
+# Examples
+```julia
+FastSRB.count_consts("2 + 3")             # Returns 2
+FastSRB.count_consts(5)                   # Returns 1
+FastSRB.count_consts(Meta.parse("x + 2")) # Returns 1
+FastSRB.count_consts("3 * 4 + 5")         # Returns 3
+```
+"""
+count_consts(expr::String) = count_consts(Meta.parse(expr))
+count_consts(expr::T) where {T<:Number} = 1
+count_consts(expr::Expr) = sum(count_consts(e) for e in expr.args[2:end])
+count_consts(expr) = 0
+
+"""
     expr_to_prefix(expr::Expr)
 
 Convert an n-ary Julia expression into a binary prefix array representation.
