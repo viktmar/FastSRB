@@ -6,14 +6,14 @@ Unlike traditional benchmarks that prioritize recovering a single "correct" equa
 Those are functionally identical yet concise variants.
 It also tackles the computational inefficiency of fixed-budget searches by implementing a callback mechanism for early termination, halting the search once an acceptable expression is found.
 
-The library is implemented as a Julia package, providing convenience functions to streamline SR workflows, including data sampling, candidate equation processing, and integration with SR tools like [TiSR]().
-Currently, FastSRB includes 120 equations sourced from the Feynman symbolic regression database, with sampling ranges and constant values adapted from the [SRSD benchmark]().
-More details on the SRSD benchmark can be found in its accompanying [publication]().
+The library is implemented as a Julia package, providing convenience functions to streamline SR workflows, including data sampling, candidate equation processing, and integration with SR tools like [TiSR](https://github.com/scoop-group/TiSR).
+Currently, FastSRB includes 120 equations sourced from the Feynman symbolic regression database, with sampling ranges and constant values adapted from the [SRSD benchmark](https://github.com/omron-sinicx/srsd-benchmark).
+More details on the SRSD benchmark can be found in its accompanying [publication](https://openreview.net/forum?id=qrUdrXsiXX).
 The library is extensible, and contributions such as new acceptable expressions, benchmark problems, or metadata are encouraged via pull requests.
 
 ## Core Components
 
-At the heart of FastSRB is a [YAML file]() containing:
+At the heart of FastSRB is a [YAML file](src/equations.yaml) containing:
 - **Ground-truth expressions**: The reference equations for each benchmark problem.
 - **Sampling instructions**: Guidelines for generating test data (e.g., variable ranges, constants).
 - **Metadata**: Additional details about each equation, such as units.
@@ -22,7 +22,8 @@ This YAML file serves as the foundation for benchmarking, enabling users to eval
 
 ## Key Features
 
-- **Curated Acceptable Expressions**: Each benchmark equation comes with a list of functionally identical variants, relaxing the strict requirement of exact recovery. As argued in [the publication](), this approach aligns with SR’s dual goals of achieving high fit quality and maintaining expression simplicity, making it a more realistic measure of algorithm performance.
+- **Curated Acceptable Expressions**: Each benchmark equation comes with a list of functionally identical variants, relaxing the strict requirement of exact recovery.
+  As argued in [the publication](), this approach aligns with SR’s dual goals of achieving high fit quality and maintaining expression simplicity, making it a more realistic measure of algorithm performance.
 - **Julia Package**: Offers convenience functions for sampling data, evaluating candidate equations, and implementing the callback mechanism.
 - **Extensibility**: Designed to grow with community input, allowing users to add new expressions, problems, or metadata.
 
