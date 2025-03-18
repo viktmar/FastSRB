@@ -38,6 +38,41 @@ function round_equation_string(expr::Expr; sigdigits=3)
 end
 
 """
+    round_sympy_consts(eq; sigdigits = 5)
+
+Rounds all numerical constants in a SymPy expression to a specified number of significant digits.
+
+# Arguments
+- `eq`: A SymPy expression (symbolic equation) containing numerical constants to be rounded.
+- `sigdigits`: An optional integer specifying the number of significant digits to round to (default is 5).
+
+# Returns
+- A new SymPy expression with all numerical constants rounded to the specified significant digits.
+
+# Description
+This function iterates through all atomic elements in the provided SymPy expression `eq`. For each
+element that is a non-zero number, it evaluates the number to a float (using `evalf`), calculates
+the appropriate precision based on the number's magnitude, and rounds it to `sigdigits` significant
+digits. The original number in the expression is then substituted with its rounded value.
+
+# Examples
+```julia
+using SymPy
+x = symbols("x")
+eq = SymPy.sympify("0.000987654321 + 1.23456789*x")
+FastSRB.round_sympy_consts(eq, sigdigits=3) # Returns an expression equivalent to 1.23*x + 0.000988
+```
+"""
+function round_sympy_consts(eq; sigdigits = 5)
+    for o in eq.atoms()
+        if o.is_Number && o != 0
+            eq = eq.subs(o, o.evalf().round(sigdigits - 1 - floor(log10(abs(o.evalf())))))
+        end
+    end
+    return eq
+end
+
+"""
     get_nary_compl(expr::String)
     get_nary_compl(expr)
 
