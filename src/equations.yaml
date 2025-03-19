@@ -227,7 +227,6 @@ I.14.3:
     prepared: 9.80665 * v1 * v2
     accept:
         - (9.80665*v1*v2)
-        # - (9.8067*v1*v2) # TODO: why not accepted
     vars:
         v1:
           name: m
@@ -1083,7 +1082,6 @@ I.13.12:
     prepared: 6.67430e-11 * v1 * v2 * (1 / v3 - 1 / v4)
     accept:
         - ((6.6743e-11*v1*v2*(-(v3)+v4))/(v3*v4))
-        # - ((-6.6743e-11*v1*v2*(v3-v4))/(v3*v4)) # manually added -> SymPy changes this to the one above
     vars:
         v1:
           name: m1
