@@ -1,6 +1,6 @@
 II.38.3:
     difficulty: easy
-    name: elastic_force
+    moniker: elastic_force
     raw: Y * A * x / d
     prepared: v1 * v2 * v3 / v4
     accept:
@@ -39,7 +39,7 @@ II.38.3:
         - v4 != 0
 II.38.14:
     difficulty: easy
-    name: shear_modulus
+    moniker: shear_modulus
     raw: Y / (2 * (1 + sigma))
     prepared: v1 / (2 * (1 + v2))
     accept:
@@ -69,7 +69,7 @@ II.38.14:
         - 1 + v2 != 0
 III.7.38:
     difficulty: easy
-    name: electron_spin_splitting
+    moniker: electron_spin_splitting
     raw: 2 * mom * B / (6.626e-34 / (2 * pi))
     prepared: 2 * v1 * v2 / (6.626e-34 / (2 * 3.1415926535897))
     accept:
@@ -94,7 +94,7 @@ III.7.38:
     constraints:
 III.12.43:
     difficulty: easy
-    name: photon_momentum
+    moniker: photon_momentum
     raw: n * (6.626e-34 / (2 * pi))
     prepared: v1 * (6.626e-34 / (2 * 3.1415926535897))
     accept:
@@ -113,7 +113,7 @@ III.12.43:
     constraints:
 III.15.27:
     difficulty: easy
-    name: fine_structure_wavevector
+    moniker: fine_structure_wavevector
     raw: 2 * pi * alpha / (n * d)
     prepared: 2 * 3.1415926535897 * v1 / (v2 * v3)
     accept:
@@ -146,7 +146,7 @@ III.15.27:
         - v3 != 0
 I.12.1:
     difficulty: easy
-    name: magnetic_moment
+    moniker: magnetic_moment
     raw: mu * Nn
     prepared: v1 * v2
     accept:
@@ -171,7 +171,7 @@ I.12.1:
     constraints:
 I.12.4:
     difficulty: easy
-    name: electric_field_point
+    moniker: electric_field_point
     raw: q1 * r / (4 * pi * 8.854e-12 * r ^ 3)
     prepared: v1 * v2 / (4 * 3.1415926535897 * 8.854e-12 * v2 ^ 3)
     accept:
@@ -197,7 +197,7 @@ I.12.4:
         - v2 != 0
 I.12.5:
     difficulty: easy
-    name: electric_force
+    moniker: electric_force
     raw: q2 * Ef
     prepared: v1 * v2
     accept:
@@ -222,7 +222,7 @@ I.12.5:
     constraints:
 I.14.3:
     difficulty: easy
-    name: earth_gravitational_potential
+    moniker: earth_gravitational_potential
     raw: g * m * z
     prepared: 9.80665 * v1 * v2
     accept:
@@ -252,7 +252,7 @@ I.14.3:
     constraints:
 I.14.4:
     difficulty: easy
-    name: spring_potential
+    moniker: spring_potential
     raw: 1 / 2 * k_spring * x ^ 2
     prepared: 1 / 2 * v1 * v2 ^ 2
     accept:
@@ -277,7 +277,7 @@ I.14.4:
     constraints:
 I.18.12:
     difficulty: easy
-    name: torque
+    moniker: torque
     raw: r * F * sin(theta)
     prepared: v1 * v2 * sin(v3)
     accept:
@@ -308,7 +308,7 @@ I.18.12:
     constraints:
 I.18.14:
     difficulty: easy
-    name: angular_momentum
+    moniker: angular_momentum
     raw: m * r * v * sin(theta)
     prepared: v1 * v2 * v3 * sin(v4)
     accept:
@@ -345,7 +345,7 @@ I.18.14:
     constraints:
 I.25.13:
     difficulty: easy
-    name: capacitor_charge
+    moniker: capacitor_charge
     raw: q / C
     prepared: v1 / v2
     accept:
@@ -371,7 +371,7 @@ I.25.13:
         - v2 != 0
 I.26.2:
     difficulty: easy
-    name: snells_law
+    moniker: snells_law
     feyn: arcsin(n*sin(theta2))
     raw: sin(theta1) / sin(theta2)
     prepared: sin(v1) / sin(v2)
@@ -399,7 +399,7 @@ I.26.2:
         - v1 * sin(v2) <= pi/2
 I.27.6:
     difficulty: easy
-    name: lens_formula
+    moniker: lens_formula
     raw: 1 / (1 / d1 + n / d2)
     prepared: 1 / (1 / v1 + v2 / v3)
     accept:
@@ -432,7 +432,7 @@ I.27.6:
         - v3 != 0
 I.30.5:
     difficulty: easy
-    name: diffraction_wavelength
+    moniker: diffraction_wavelength
     raw: lambda / (n * sin(theta))
     prepared: v1 / (v2 * sin(v3))
     accept:
@@ -466,7 +466,7 @@ I.30.5:
         - v3 != pi
 I.43.16:
     difficulty: easy
-    name: electron_drift_velocity
+    moniker: electron_drift_velocity
     raw: mu_drift * q * Volt / d
     prepared: v1 * v2 * v3 / v4
     accept:
@@ -504,7 +504,7 @@ I.43.16:
         - v4 != 0
 I.47.23:
     difficulty: easy
-    name: sound_speed
+    moniker: sound_speed
     raw: sqrt(gamma * pr / rho)
     prepared: sqrt(v1 * v2 / v3)
     accept:
@@ -538,7 +538,7 @@ I.47.23:
         - v3 != 0
 II.2.42:
     difficulty: easy
-    name: thermal_conduction
+    moniker: thermal_conduction
     raw: kappa * (T2 - T1) * A / d
     prepared: v1 * (v2 - v3) * v4 / v5
     accept:
@@ -582,7 +582,7 @@ II.2.42:
         - v5 != 0
 II.3.24:
     difficulty: easy
-    name: radiated_intensity
+    moniker: radiated_intensity
     raw: Pwr / (4 * pi * r ^ 2)
     prepared: v1 / (4 * 3.1415926535897 * v2 ^ 2)
     accept:
@@ -608,7 +608,7 @@ II.3.24:
         - v2 != 0
 II.4.23:
     difficulty: easy
-    name: point_charge_potential
+    moniker: point_charge_potential
     raw: q / (4 * pi * 8.854e-12 * r)
     prepared: v1 / (4 * 3.1415926535897 * 8.854e-12 * v2)
     accept:
@@ -634,7 +634,7 @@ II.4.23:
         - v2 != 0
 II.8.31:
     difficulty: easy
-    name: energy_density_electric
+    moniker: energy_density_electric
     raw: 8.854e-12 * Ef ^ 2 / 2
     prepared: 8.854e-12 * v1 ^ 2 / 2
     accept:
@@ -653,7 +653,7 @@ II.8.31:
     constraints:
 II.10.9:
     difficulty: easy
-    name: electric_susceptibility
+    moniker: electric_susceptibility
     raw: sigma_den / 8.854e-12 * 1 / (1 + chi)
     prepared: v1 / 8.854e-12 * 1 / (1 + v2)
     accept:
@@ -679,7 +679,7 @@ II.10.9:
         - 1 + v2 != 0
 II.13.17:
     difficulty: easy
-    name: radiated_power
+    moniker: radiated_power
     raw: 1 / (4 * pi * 8.854e-12 * c ^ 2) * 2 * I / r
     prepared: 1 / (4 * 3.1415926535897 * 8.854e-12 * 2.99792458e8 ^ 2) * 2 * v1 / v2
     accept:
@@ -710,7 +710,7 @@ II.13.17:
         - v2 != 0
 II.15.4:
     difficulty: easy
-    name: magnetic_potential_energy
+    moniker: magnetic_potential_energy
     raw: -mom * B * cos(theta)
     prepared: neg(v1) * v2 * cos(v3)
     accept:
@@ -741,7 +741,7 @@ II.15.4:
     constraints:
 II.15.5:
     difficulty: easy
-    name: electric_dipole_energy
+    moniker: electric_dipole_energy
     raw: -p_d * Ef * cos(theta)
     prepared: neg(v1) * v2 * cos(v3)
     accept:
@@ -772,7 +772,7 @@ II.15.5:
     constraints:
 II.27.16:
     difficulty: easy
-    name: electromagnetic_energy_density
+    moniker: electromagnetic_energy_density
     raw: 8.854e-12 * c * Ef ^ 2
     prepared: 8.854e-12 * 2.99792458e8 * v1 ^ 2
     accept:
@@ -796,7 +796,7 @@ II.27.16:
     constraints:
 II.27.18:
     difficulty: easy
-    name: electric_energy_density
+    moniker: electric_energy_density
     raw: 8.854e-12 * Ef ^ 2
     prepared: 8.854e-12 * v1 ^ 2
     accept:
@@ -815,7 +815,7 @@ II.27.18:
     constraints:
 II.34.11:
     difficulty: easy
-    name: gyrofrequency
+    moniker: gyrofrequency
     raw: g_ * q * B / (2 * m)
     prepared: v1 * v2 * v3 / (2 * v4)
     accept:
@@ -854,7 +854,7 @@ II.34.11:
         - v4 != 0
 II.34.29b:
     difficulty: easy
-    name: magnetic_zeeman_energy
+    moniker: magnetic_zeeman_energy
     raw: g_ * 9.2740100783e-24 * B * Jz / (6.626e-34 / (2 * pi))
     prepared: v1 * 9.2740100783e-24 * v2 * v3 / (6.626e-34 / (2 * 3.1415926535897))
     accept:
@@ -885,7 +885,7 @@ II.34.29b:
     constraints:
 I.10.7:
     difficulty: medium
-    name: relativistic_mass
+    moniker: relativistic_mass
     raw: m_0 / sqrt(1 - v ^ 2 / c ^ 2)
     prepared: v1 / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
     accept:
@@ -916,7 +916,7 @@ I.10.7:
         - 1 - v2 ^ 2 / 2.99792458e8 ^ 2 > 0
 I.11.19:
     difficulty: medium
-    name: dot_product
+    moniker: dot_product
     raw: x1 * y1 + x2 * y2 + x3 * y3
     prepared: v1 * v2 + v3 * v4 + v5 * v6
     accept:
@@ -965,7 +965,7 @@ I.11.19:
     constraints:
 I.12.2:
     difficulty: medium
-    name: coulomb_force
+    moniker: coulomb_force
     raw: q1 * q2 * r / (4 * pi * 8.854e-12 * r ^ 3)
     prepared: v1 * v2 * v3 / (4 * 3.1415926535897 * 8.854e-12 * v3 ^ 3)
     accept:
@@ -997,7 +997,7 @@ I.12.2:
         - v3 != 0
 I.12.11:
     difficulty: medium
-    name: lorentz_force
+    moniker: lorentz_force
     raw: q * (Ef + B * v * sin(theta))
     prepared: v1 * (v2 + v3 * v4 * sin(v5))
     accept:
@@ -1040,7 +1040,7 @@ I.12.11:
     constraints:
 I.13.4:
     difficulty: medium
-    name: kinetic_energy
+    moniker: kinetic_energy
     raw: 1 / 2 * m * (v ^ 2 + u ^ 2 + w ^ 2)
     prepared: 1 / 2 * v1 * (v2 ^ 2 + v3 ^ 2 + v4 ^ 2)
     accept:
@@ -1077,7 +1077,7 @@ I.13.4:
     constraints:
 I.13.12:
     difficulty: medium
-    name: gravitational_potential
+    moniker: gravitational_potential
     raw: G * m1 * m2 * (1 / r2 - 1 / r1)
     prepared: 6.67430e-11 * v1 * v2 * (1 / v3 - 1 / v4)
     accept:
@@ -1121,7 +1121,7 @@ I.13.12:
         - v4 != 0
 I.15.1:
     difficulty: medium
-    name: relativistic_momentum
+    moniker: relativistic_momentum
     raw: m_0 * v / sqrt(1 - v ^ 2 / c ^ 2)
     prepared: v1 * v2 / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
     accept:
@@ -1152,7 +1152,7 @@ I.15.1:
         - 1 - v2 ^ 2 / 2.99792458e8 ^ 2 > 0
 I.16.6:
     difficulty: medium
-    name: relativistic_velocity_addition
+    moniker: relativistic_velocity_addition
     raw: (u + v) / (1 + u * v / c ^ 2)
     prepared: (v1 + v2) / (1 + v1 * v2 / 2.99792458e8 ^ 2)
     accept:
@@ -1183,7 +1183,7 @@ I.16.6:
         - 1 + v1 * v2 != 0
 I.18.4:
     difficulty: medium
-    name: center_of_mass
+    moniker: center_of_mass
     raw: (m1 * r1 + m2 * r2) / (m1 + m2)
     prepared: (v1 * v2 + v3 * v4) / (v1 + v3)
     accept:
@@ -1221,7 +1221,7 @@ I.18.4:
         - v1 + v3 != 0
 I.24.6:
     difficulty: medium
-    name: harmonic_energy
+    moniker: harmonic_energy
     raw: 1 / 2 * m * (omega ^ 2 + omega_0 ^ 2) * 1 / 2 * x ^ 2
     prepared: 1 / 2 * v1 * (v2 ^ 2 + v3 ^ 2) * 1 / 2 * v4 ^ 2
     accept:
@@ -1258,7 +1258,7 @@ I.24.6:
     constraints:
 I.29.4:
     difficulty: medium
-    name: normalized_frequency
+    moniker: normalized_frequency
     raw: omega / c
     prepared: v1 / 2.99792458e8
     accept:
@@ -1282,7 +1282,7 @@ I.29.4:
     constraints:
 I.32.5:
     difficulty: medium
-    name: radiation_reaction
+    moniker: radiation_reaction
     raw: q ^ 2 * a ^ 2 / (6 * pi * 8.854e-12 * c ^ 3)
     prepared: v1 ^ 2 * v2 ^ 2 / (6 * 3.1415926535897 * 8.854e-12 * 2.99792458e8 ^ 3)
     accept:
@@ -1314,7 +1314,7 @@ I.32.5:
         - v4 != 0
 I.34.1:
     difficulty: medium
-    name: relativistic_doppler_shift
+    moniker: relativistic_doppler_shift
     raw: omega_0 / (1 - v / c)
     prepared: v1 / (1 - v2 / 2.99792458e8)
     accept:
@@ -1346,7 +1346,7 @@ I.34.1:
         - 2.99792458e8 - v2 != 0
 I.34.8:
     difficulty: medium
-    name: cyclotron_frequency
+    moniker: cyclotron_frequency
     raw: q * v * B / p
     prepared: v1 * v2 * v3 / v4
     accept:
@@ -1384,7 +1384,7 @@ I.34.8:
         - v4 != 0
 I.34.27:
     difficulty: medium
-    name: photon_energy
+    moniker: photon_energy
     raw: (6.626e-34 / (2 * pi)) * omega
     prepared: (6.626e-34 / (2 * 3.1415926535897)) * v1
     accept:
@@ -1403,7 +1403,7 @@ I.34.27:
     constraints:
 I.38.12:
     difficulty: medium
-    name: fine_structure
+    moniker: fine_structure
     raw: 4 * pi * 8.854e-12 * (6.626e-34 / (2 * pi)) ^ 2 / (m * q ^ 2)
     prepared: 4 * 3.1415926535897 * 8.854e-12 * (6.626e-34 / (2 * 3.1415926535897)) ^ 2 / (v1 * v2 ^ 2)
     accept:
@@ -1430,7 +1430,7 @@ I.38.12:
         - v2 != 0
 I.39.1:
     difficulty: medium
-    name: ideal_gas_internal_energy
+    moniker: ideal_gas_internal_energy
     raw: 3 / 2 * pr * V
     prepared: 3 / 2 * v1 * v2
     accept:
@@ -1455,7 +1455,7 @@ I.39.1:
     constraints:
 I.39.11:
     difficulty: medium
-    name: polytropic_energy
+    moniker: polytropic_energy
     raw: 1 / (gamma - 1) * pr * V
     prepared: 1 / (v1 - 1) * v2 * v3
     accept:
@@ -1487,7 +1487,7 @@ I.39.11:
         - v1 - 1 != 0
 I.43.31:
     difficulty: medium
-    name: thermal_mobility
+    moniker: thermal_mobility
     raw: mob * 1.380649e-23 * T
     prepared: v1 * 1.380649e-23 * v2
     accept:
@@ -1512,7 +1512,7 @@ I.43.31:
     constraints:
 I.43.43:
     difficulty: medium
-    name: energy_per_volume
+    moniker: energy_per_volume
     raw: 1 / (gamma - 1) * 1.380649e-23 * v / A
     prepared: 1 / (v1 - 1) * 1.380649e-23 * v2 / v3
     accept:
@@ -1546,7 +1546,7 @@ I.43.43:
         - v3 != 0
 I.48.2:
     difficulty: medium
-    name: relativistic_energy
+    moniker: relativistic_energy
     raw: m * c ^ 2 / sqrt(1 - v ^ 2 / c ^ 2)
     prepared: v1 * 2.99792458e8 ^ 2 / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
     accept:
@@ -1577,7 +1577,7 @@ I.48.2:
         - 1 - v2 ^ 2 / 2.99792458e8 ^ 2 > 0
 II.6.11:
     difficulty: medium
-    name: dipole_potential
+    moniker: dipole_potential
     raw: 1 / (4 * pi * 8.854e-12) * p_d * cos(theta) / r ^ 2
     prepared: 1 / (4 * 3.1415926535897 * 8.854e-12) * v1 * cos(v2) / v3 ^ 2
     accept:
@@ -1609,7 +1609,7 @@ II.6.11:
         - v3 != 0
 II.8.7:
     difficulty: medium
-    name: electrostatic_energy
+    moniker: electrostatic_energy
     raw: 3 / 5 * q ^ 2 / (4 * pi * 8.854e-12 * d)
     prepared: 3 / 5 * v1 ^ 2 / (4 * 3.1415926535897 * 8.854e-12 * v2)
     accept:
@@ -1635,7 +1635,7 @@ II.8.7:
         - v2 != 0
 II.11.3:
     difficulty: medium
-    name: driven_oscillator
+    moniker: driven_oscillator
     raw: q * Ef / (m * (omega_0 ^ 2 - omega ^ 2))
     prepared: v1 * v2 / (v3 * (v4 ^ 2 - v5 ^ 2))
     accept:
@@ -1681,7 +1681,7 @@ II.11.3:
         - v4 ^ 2 - v5 ^ 2 != 0
 II.21.32:
     difficulty: medium
-    name: relativistic_coulomb_potential
+    moniker: relativistic_coulomb_potential
     raw: q / (4 * pi * 8.854e-12 * r * (1 - v / c))
     prepared: v1 / (4 * 3.1415926535897 * 8.854e-12 * v2 * (1 - v3 / 2.99792458e8))
     accept:
@@ -1720,7 +1720,7 @@ II.21.32:
         - 2.99792458e8 - v3 > 0
 II.34.2a:
     difficulty: medium
-    name: current_loop_field
+    moniker: current_loop_field
     raw: q * v / (2 * pi * r)
     prepared: v1 * v2 / (2 * 3.1415926535897 * v3)
     accept:
@@ -1752,7 +1752,7 @@ II.34.2a:
         - v3 != 0
 II.34.2:
     difficulty: medium
-    name: magnetic_dipole_moment
+    moniker: magnetic_dipole_moment
     raw: q * v * r / 2
     prepared: v1 * v2 * v3 / 2
     accept:
@@ -1784,7 +1784,7 @@ II.34.2:
     constraints:
 II.34.29a:
     difficulty: medium
-    name: bohr_magneton
+    moniker: bohr_magneton
     raw: q * 6.626e-34 / (4 * pi * m)
     prepared: v1 * 6.626e-34 / (4 * 3.1415926535897 * v2)
     accept:
@@ -1810,7 +1810,7 @@ II.34.29a:
         - v2 != 0
 II.37.1:
     difficulty: medium
-    name: effective_magnetic_moment
+    moniker: effective_magnetic_moment
     raw: mom * (1 + chi) * B
     prepared: v1 * (1 + v2) * v3
     accept:
@@ -1841,7 +1841,7 @@ II.37.1:
     constraints:
 III.4.32:
     difficulty: medium
-    name: bose_einstein_distribution
+    moniker: bose_einstein_distribution
     raw: 1 / (exp((6.626e-34 / (2 * pi)) * omega / (1.380649e-23 * T)) - 1)
     prepared: 1 / (exp((6.626e-34 / (2 * 3.1415926535897)) * v1 / (1.380649e-23 * v2)) - 1)
     accept:
@@ -1868,7 +1868,7 @@ III.4.32:
         - v2 != 0
 III.8.54:
     difficulty: medium
-    name: quantum_oscillation
+    moniker: quantum_oscillation
     raw: sin(E_n * t / (6.626e-34 / (2 * pi))) ^ 2
     prepared: sin(v1 * v2 / (6.626e-34 / (2 * 3.1415926535897))) ^ 2
     accept:
@@ -1893,7 +1893,7 @@ III.8.54:
     constraints:
 III.13.18:
     difficulty: medium
-    name: tunneling_probability
+    moniker: tunneling_probability
     raw: 2 * E_n * d ^ 2 * k / (6.626e-34 / (2 * pi))
     prepared: 2 * v1 * v2 ^ 2 * v3 / (6.626e-34 / (2 * 3.1415926535897))
     accept:
@@ -1924,7 +1924,7 @@ III.13.18:
     constraints:
 III.14.14:
     difficulty: medium
-    name: diode_current
+    moniker: diode_current
     raw: I_0 * (exp(q * Volt / (1.380649e-23 * T)) - 1)
     prepared: v1 * (exp(v2 * v3 / (1.380649e-23 * v4)) - 1)
     accept:
@@ -1962,7 +1962,7 @@ III.14.14:
         - v4 != 0
 III.15.12:
     difficulty: medium
-    name: energy_bandwidth
+    moniker: energy_bandwidth
     raw: 2 * U * (1 - cos(k * d))
     prepared: 2 * v1 * (1 - cos(v2 * v3))
     accept:
@@ -1993,7 +1993,7 @@ III.15.12:
     constraints:
 III.15.14:
     difficulty: medium
-    name: quantum_kinetic_energy
+    moniker: quantum_kinetic_energy
     raw: (6.626e-34 / (2 * pi)) ^ 2 / (2 * E_n * d ^ 2)
     prepared: (6.626e-34 / (2 * 3.1415926535897)) ^ 2 / (2 * v1 * v2 ^ 2)
     accept:
@@ -2020,7 +2020,7 @@ III.15.14:
         - v2 != 0
 III.17.37:
     difficulty: medium
-    name: relativistic_beta_factor
+    moniker: relativistic_beta_factor
     raw: beta * (1 + alpha * cos(theta))
     prepared: v1 * (1 + v2 * cos(v3))
     accept:
@@ -2051,7 +2051,7 @@ III.17.37:
     constraints:
 III.19.51:
     difficulty: medium
-    name: hydrogen_energy_level
+    moniker: hydrogen_energy_level
     raw: -m * q ^ 4 / (2 * (4 * pi * 8.854e-12) ^ 2 * (6.626e-34 / (2 * pi)) ^ 2) * (1 / n ^ 2)
     prepared: neg(v1) * v2 ^ 4 / (2 * (4 * 3.1415926535897 * 8.854e-12) ^ 2 * (6.626e-34 / (2 * 3.1415926535897)) ^ 2) * (1 / v3 ^ 2)
     accept:
@@ -2083,7 +2083,7 @@ III.19.51:
         - v3 != 0
 B8:
     difficulty: medium
-    name: relativistic_energy_loss
+    moniker: relativistic_energy_loss
     feyn_name: Compton Scattering
     raw: E_n / (1 + E_n / (9.10938356e-31 * c ^ 2) * (1 - cos(theta)))
     prepared: v1 / (1 + v1 / (9.10938356e-31 * 2.99792458e8 ^ 2) * (1 - cos(v2)))
@@ -2115,7 +2115,7 @@ B8:
         - v1 * (1 - cos(v2)) / (9.10938356e-31 * 2.99792458e8 ^ 2) != -1
 B18:
     difficulty: medium
-    name: cosmological_density
+    moniker: cosmological_density
     feyn_name: 15.2.1 Weinberg
     raw: 3 / (8 * pi * G) * (c ^ 2 * k_f / r ^ 2 + H_G ^ 2)
     prepared: 3 / (8 * 3.1415926535897 * 6.67430e-11) * (2.99792458e8 ^ 2 * v1 / v2 ^ 2 + v3 ^ 2)
@@ -2157,7 +2157,7 @@ B18:
         - v2 != 0
 I.8.14:
     difficulty: medium
-    name: euclidean_2d
+    moniker: euclidean_2d
     raw: sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
     prepared: sqrt((v1 - v2) ^ 2 + (v3 - v4) ^ 2)
     accept:
@@ -2194,7 +2194,7 @@ I.8.14:
     constraints:
 I.6.2a:
     difficulty: hard
-    name: gaussian_std
+    moniker: gaussian_std
     raw: exp(-theta ^ 2 / 2) / sqrt(2 * pi)
     prepared: exp(neg(v1 ^ 2) / 2) / sqrt(2 * 3.1415926535897)
     accept:
@@ -2218,7 +2218,7 @@ I.6.2a:
     constraints:
 I.6.2:
     difficulty: hard
-    name: gaussian
+    moniker: gaussian
     raw: exp(-(theta / sigma) ^ 2 / 2) / (sqrt(2 * pi) * sigma)
     prepared: exp(neg((v1 / v2) ^ 2) / 2) / (sqrt(2 * 3.1415926535897) * v2)
     accept:
@@ -2251,7 +2251,7 @@ I.6.2:
         - v2 != 0
 I.6.2b:
     difficulty: hard
-    name: gaussian_shifted
+    moniker: gaussian_shifted
     raw: exp(-((theta - theta1) / sigma) ^ 2 / 2) / (sqrt(2 * pi) * sigma)
     prepared: exp(neg(((v1 - v2) / v3) ^ 2) / 2) / (sqrt(2 * 3.1415926535897) * v3)
     accept:
@@ -2286,7 +2286,7 @@ I.6.2b:
         - v3 != 0
 I.9.18:
     difficulty: hard
-    name: newton_gravity
+    moniker: newton_gravity
     raw: 6.6743e-11 * m1 * m2 / ((x2 - x1) ^ 2 + (y2 - y1) ^ 2 + (z2 - z1) ^ 2)
     prepared: 6.6743e-11 * v1 * v2 / ((v3 - v4) ^ 2 + (v5 - v6) ^ 2 + (v7 - v8) ^ 2)
     accept:
@@ -2348,7 +2348,7 @@ I.9.18:
         - (v3 - v4) ^ 2 + (v5 - v6) ^ 2 + (v7 - v8) ^ 2 != 0
 I.15.3t:
     difficulty: hard
-    name: lorentz_time
+    moniker: lorentz_time
     raw: (t - u * x / c ^ 2) / sqrt(1 - u ^ 2 / c ^ 2)
     prepared: (v1 - v2 * v3 / 2.99792458e8 ^ 2) / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
     accept:
@@ -2385,7 +2385,7 @@ I.15.3t:
         - 1 - v2 ^ 2 / 2.99792458e8 ^ 2 >= 0
 I.29.16:
     difficulty: hard
-    name: law_of_cosines
+    moniker: law_of_cosines
     raw: sqrt(x1 ^ 2 + x2 ^ 2 - 2 * x1 * x2 * cos(theta1 - theta2))
     prepared: sqrt(v1 ^ 2 + v2 ^ 2 - 2 * v1 * v2 * cos(v3 - v4))
     accept:
@@ -2426,7 +2426,7 @@ I.29.16:
     constraints:
 I.15.3x:
     difficulty: hard
-    name: lorentz_length
+    moniker: lorentz_length
     raw: (x - u * t) / sqrt(1 - u ^ 2 / c ^ 2)
     prepared: (v1 - v2 * v3) / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
     accept:
@@ -2463,7 +2463,7 @@ I.15.3x:
         - 1 - v2 ^ 2 / 2.99792458e8 ^ 2 > 0
 I.30.3:
     difficulty: hard
-    name: diffraction_intensity
+    moniker: diffraction_intensity
     raw: Int_0 * sin(n * theta / 2) ^ 2 / sin(theta / 2) ^ 2
     prepared: v1 * sin(v2 * v3 / 2) ^ 2 / sin(v3 / 2) ^ 2
     accept:
@@ -2501,7 +2501,7 @@ I.30.3:
         - sin(v3 / 2) != 0
 I.32.17:
     difficulty: hard
-    name: dipole_radiation_power
+    moniker: dipole_radiation_power
     raw: (1 / 2 * 8.854e-12 * c * Ef ^ 2) * (8 * pi * r ^ 2 / 3) * (omega ^ 4 / (omega ^ 2 - omega_0 ^ 2) ^ 2)
     prepared: (1 / 2 * 8.854e-12 * 2.99792458e8 * v1 ^ 2) * (8 * 3.1415926535897 * v2 ^ 2 / 3) * (v3 ^ 4 / (v3 ^ 2 - v4 ^ 2) ^ 2)
     accept:
@@ -2545,7 +2545,7 @@ I.32.17:
         - v3 ^ 2 - v4 ^ 2 != 0
 I.37.4:
     difficulty: hard
-    name: interference_intensity
+    moniker: interference_intensity
     raw: I1 + I2 + 2 * sqrt(I1 * I2) * cos(delta)
     prepared: v1 + v2 + 2 * sqrt(v1 * v2) * cos(v3)
     accept:
@@ -2578,7 +2578,7 @@ I.37.4:
         - v1*v2 >= 0
 I.39.22:
     difficulty: hard
-    name: ideal_gas_pressure
+    moniker: ideal_gas_pressure
     raw: n * 1.380649e-23 * T / V
     prepared: v1 * 1.380649e-23 * v2 / v3
     accept:
@@ -2610,7 +2610,7 @@ I.39.22:
         - v3 != 0
 I.40.1:
     difficulty: hard
-    name: barometric_formula
+    moniker: barometric_formula
     raw: n_0 * exp(-m * g * x / (1.380649e-23 * T))
     prepared: v1 * exp(neg(v2) * 9.80665 * v3 / (1.380649e-23 * v4))
     accept:
@@ -2653,7 +2653,7 @@ I.40.1:
         - v4 != 0
 I.41.16:
     difficulty: hard
-    name: planck_radiation
+    moniker: planck_radiation
     raw: 6.626e-34 / (2 * pi) * omega ^ 3 / (pi ^ 2 * c ^ 2 * (exp((6.626e-34 / (2 * pi)) * omega / (1.380649e-23 * T)) - 1))
     prepared: 6.626e-34 / (2 * 3.1415926535897) * v1 ^ 3 / (3.1415926535897 ^ 2 * 2.99792458e8 ^ 2 * (exp((6.626e-34 / (2 * 3.1415926535897)) * v1 / (1.380649e-23 * v2)) - 1))
     accept:
@@ -2684,7 +2684,7 @@ I.41.16:
         - v2 != 0
 I.44.4:
     difficulty: hard
-    name: entropy_change
+    moniker: entropy_change
     raw: n * 1.380649e-23 * T * ln(V2 / V1)
     prepared: v1 * 1.380649e-23 * v2 * log(v3 / v4)
     accept:
@@ -2726,7 +2726,7 @@ I.44.4:
         - v3 / v4 > 0
 I.50.26:
     difficulty: hard
-    name: nonlinear_oscillator
+    moniker: nonlinear_oscillator
     raw: x1 * (cos(omega * t) + alpha * cos(omega * t) ^ 2)
     prepared: v1 * (cos(v2 * v3) + v4 * cos(v2 * v3) ^ 2)
     accept:
@@ -2763,7 +2763,7 @@ I.50.26:
     constraints:
 I.34.14:
     difficulty: hard
-    name: relativistic_frequency_shift
+    moniker: relativistic_frequency_shift
     raw: (1 + v / c) / sqrt(1 - v ^ 2 / c ^ 2) * omega_0
     prepared: (1 + v1 / 2.99792458e8) / sqrt(1 - v1 ^ 2 / 2.99792458e8 ^ 2) * v2
     accept:
@@ -2795,7 +2795,7 @@ I.34.14:
         - v2 != 0
 II.6.15b:
     difficulty: hard
-    name: dipole_field_theta
+    moniker: dipole_field_theta
     raw: p_d / (4 * pi * 8.854e-12) * 3 * cos(theta) * sin(theta) / r ^ 3
     prepared: v1 / (4 * 3.1415926535897 * 8.854e-12) * 3 * cos(v2) * sin(v2) / v3 ^ 3
     accept:
@@ -2827,7 +2827,7 @@ II.6.15b:
         - v3 != 0
 II.6.15a:
     difficulty: hard
-    name: dipole_field_z
+    moniker: dipole_field_z
     raw: p_d / (4 * pi * 8.854e-12) * 3 * z / r ^ 5 * sqrt(x ^ 2 + y ^ 2)
     prepared: v1 / (4 * 3.1415926535897 * 8.854e-12) * 3 * v2 / v3 ^ 5 * sqrt(v4 ^ 2 + v5 ^ 2)
     accept:
@@ -2871,7 +2871,7 @@ II.6.15a:
         - v3 != 0
 II.11.17:
     difficulty: hard
-    name: polarizable_density
+    moniker: polarizable_density
     raw: n_0 * (1 + p_d * Ef * cos(theta) / (1.380649e-23 * T))
     prepared: v1 * (1 + v2 * v3 * cos(v4) / (1.380649e-23 * v5))
     accept:
@@ -2915,7 +2915,7 @@ II.11.17:
         - v5 != 0
 II.11.20:
     difficulty: hard
-    name: polarizability_density
+    moniker: polarizability_density
     raw: n_rho * p_d ^ 2 * Ef / (3 * 1.380649e-23 * T)
     prepared: v1 * v2 ^ 2 * v3 / (3 * 1.380649e-23 * v4)
     accept:
@@ -2953,7 +2953,7 @@ II.11.20:
         - v4 != 0
 II.11.27:
     difficulty: hard
-    name: polarization_field
+    moniker: polarization_field
     raw: n * alpha / (1 - (n * alpha / 3)) * 8.854e-12 * Ef
     prepared: v1 * v2 / (1 - (v1 * v2 / 3)) * 8.854e-12 * v3
     accept:
@@ -2985,7 +2985,7 @@ II.11.27:
         - 1 - (v1 * v2 / 3) != 0
 II.11.28:
     difficulty: hard
-    name: dielectric_constant
+    moniker: dielectric_constant
     raw: 1 + n * alpha / (1 - (n * alpha / 3))
     prepared: 1 + v1 * v2 / (1 - (v1 * v2 / 3))
     accept:
@@ -3011,7 +3011,7 @@ II.11.28:
         - 1-(v1*v2/3) != 0
 II.13.23:
     difficulty: hard
-    name: relativistic_charge_density
+    moniker: relativistic_charge_density
     raw: rho_c_0 / sqrt(1 - v ^ 2 / c ^ 2)
     prepared: v1 / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
     accept:
@@ -3042,7 +3042,7 @@ II.13.23:
         - 2.99792458e8 ^ 2 - v2 ^ 2 > 0
 II.13.34:
     difficulty: hard
-    name: relativistic_current_density
+    moniker: relativistic_current_density
     raw: rho_c_0 * v / sqrt(1 - v ^ 2 / c ^ 2)
     prepared: v1 * v2 / sqrt(1 - v2 ^ 2 / 2.99792458e8 ^ 2)
     accept:
@@ -3073,7 +3073,7 @@ II.13.34:
         - 2.99792458e8 ^ 2 - v2 ^ 2 > 0
 II.24.17:
     difficulty: hard
-    name: wavevector
+    moniker: wavevector
     raw: sqrt(omega ^ 2 / c ^ 2 - pi ^ 2 / d ^ 2)
     prepared: sqrt(v1 ^ 2 / 2.99792458e8 ^ 2 - 3.1415926535897 ^ 2 / v2 ^ 2)
     accept:
@@ -3105,7 +3105,7 @@ II.24.17:
         - v2 != 0
 II.35.18:
     difficulty: hard
-    name: boltzmann_population
+    moniker: boltzmann_population
     raw: n_0 / (exp(mom * B / (1.380649e-23 * T)) + exp(-mom * B / (1.380649e-23 * T)))
     prepared: v1 / (exp(v2 * v3 / (1.380649e-23 * v4)) + exp(neg(v2) * v3 / (1.380649e-23 * v4)))
     accept:
@@ -3143,7 +3143,7 @@ II.35.18:
         - v4 != 0
 II.35.21:
     difficulty: hard
-    name: magnetization_density
+    moniker: magnetization_density
     raw: n_rho * mom * tanh(mom * B / (1.380649e-23 * T))
     prepared: v1 * v2 * tanh(v2 * v3 / (1.380649e-23 * v4))
     accept:
@@ -3181,7 +3181,7 @@ II.35.21:
         - v4 != 0
 II.36.38:
     difficulty: hard
-    name: susceptibility_magnetization
+    moniker: susceptibility_magnetization
     raw: mom * H / (1.380649e-23 * T) + (mom * alpha) / (8.854e-12 * c ^ 2 * 1.380649e-23 * T) * M
     prepared: v1 * v2 / (1.380649e-23 * v3) + (v1 * v4) / (8.854e-12 * 2.99792458e8 ^ 2 * 1.380649e-23 * v3) * v5
     accept:
@@ -3230,7 +3230,7 @@ II.36.38:
         - v3 != 0
 III.4.33:
     difficulty: hard
-    name: planck_energy_distribution
+    moniker: planck_energy_distribution
     raw: (6.626e-34 / (2 * pi)) * omega / (exp((6.626e-34 / (2 * pi)) * omega / (1.380649e-23 * T)) - 1)
     prepared: (6.626e-34 / (2 * 3.1415926535897)) * v1 / (exp((6.626e-34 / (2 * 3.1415926535897)) * v1 / (1.380649e-23 * v2)) - 1)
     accept:
@@ -3257,7 +3257,7 @@ III.4.33:
         - v2 != 0
 III.9.52:
     difficulty: hard
-    name: rabi_flopping
+    moniker: rabi_flopping
     srsd: (p_d * Ef * t / (6.626e-34 / (2 * pi))) ^ 2 * sin((omega - omega_0) * t / 2) ^ 2 / ((omega - omega_0) * t / 2) ^ 2
     raw: (p_d * Ef * t / (6.626e-34 / (2 * pi))) * sin((omega - omega_0) * t / 2) ^ 2 / ((omega - omega_0) * t / 2) ^ 2
     prepared: (v1 * v2 * v3 / (6.626e-34 / (2 * 3.1415926535897))) * sin((v4 - v5) * v3 / 2) ^ 2 / ((v4 - v5) * v3 / 2) ^ 2
@@ -3303,7 +3303,7 @@ III.9.52:
         - v4 - v5 != 0
 III.10.19:
     difficulty: hard
-    name: total_magnetic_moment
+    moniker: total_magnetic_moment
     raw: mom * sqrt(Bx ^ 2 + By ^ 2 + Bz ^ 2)
     prepared: v1 * sqrt(v2 ^ 2 + v3 ^ 2 + v4 ^ 2)
     accept:
@@ -3340,7 +3340,7 @@ III.10.19:
     constraints:
 III.21.20:
     difficulty: hard
-    name: lorentz_current
+    moniker: lorentz_current
     raw: -rho_c_0 * q * A_vec / m
     prepared: neg(v1) * v2 * v3 / v4
     accept:
@@ -3378,7 +3378,7 @@ III.21.20:
         - v4 != 0
 B1:
     difficulty: hard
-    name: rutherford_scattering
+    moniker: rutherford_scattering
     raw: (Z_1 * Z_2 * alpha * 1.054571817e-34 * c / (4 * E_n * sin(theta / 2) ^ 2)) ^ 2
     prepared: (v1 * v2 * 7.2973525693e-3 * 1.054571817e-34 * 2.99792458e8 / (4 * v3 * sin(v4 / 2) ^ 2)) ^ 2
     accept:
@@ -3424,7 +3424,7 @@ B1:
         - sin(v4 / 2) != 0
 B2:
     difficulty: hard
-    name: gravitational_wave_energy
+    moniker: gravitational_wave_energy
     feyn_name: 3.55 Goldstein
     raw: m * k_G / L ^ 2 * (1 + sqrt(1 + 2 * E_n * L ^ 2 / (m * k_G ^ 2)) * cos(theta1 - theta2))
     prepared: v1 * v2 / v3 ^ 2 * (1 + sqrt(1 + 2 * v4 * v3 ^ 2 / (v1 * v2 ^ 2)) * cos(v5 - v6))
@@ -3477,7 +3477,7 @@ B2:
         - v4 * v3 ^ 2 / (v1 * v2 ^ 2) >= -1 / 2
 B3:
     difficulty: hard
-    name: compton_wavelength_shift
+    moniker: compton_wavelength_shift
     feyn_name: 3.64 Goldstein
     raw: d * (1 - alpha ^ 2) / (1 + alpha * cos(theta1 - theta2))
     prepared: v1 * (1 - v2 ^ 2) / (1 + v2 * cos(v3 - v4))
@@ -3517,7 +3517,7 @@ B3:
         - v2 * cos(v3 - v4) != -1
 B4:
     difficulty: hard
-    name: quantum_angular_momentum
+    moniker: quantum_angular_momentum
     feyn_name: 3.16 Goldstein
     raw: sqrt(2 / m * (E_n - U - L ^ 2 / (2 * m * r ^ 2)))
     prepared: sqrt(2 / v1 * (v2 - v3 - v4 ^ 2 / (2 * v1 * v5 ^ 2)))
@@ -3564,7 +3564,7 @@ B4:
         - v5 != 0
 B5:
     difficulty: hard
-    name: orbital_period
+    moniker: orbital_period
     feyn_name: 3.74 Goldstein
     raw: 2 * pi * d ^ (3 / 2) / sqrt(G * (m1 + m2))
     prepared: 2 * 3.1415926535897 * v1 ^ (3 / 2) / sqrt(6.67430e-11 * (v2 + v3))
@@ -3609,7 +3609,7 @@ B5:
         - v2 * (v2 + v3) > 0
 B6:
     difficulty: hard
-    name: relativistic_orbit_shift
+    moniker: relativistic_orbit_shift
     feyn_name: 3.99 Goldstein
     raw: sqrt(1 + 2 * epsilon ^ 2 * E_n * L ^ 2 / (m * (Z_1 * Z_2 * q ^ 2) ^ 2))
     prepared: sqrt(1 + 2 * v1 ^ 2 * v2 * v3 ^ 2 / (v4 * (v5 * v6 * v7 ^ 2) ^ 2))
@@ -3671,7 +3671,7 @@ B6:
         - 1 + 2 * v1 * v2 * v3 ^ 2 / (v4 * (v5 * v6 * v7 ^ 2) ^ 2) >= 0
 B7:
     difficulty: hard
-    name: cosmological_expansion_rate
+    moniker: cosmological_expansion_rate
     feyn_name: Friedman Equation
     raw: sqrt(8 * pi * G * rho / 3 - alpha * c ^ 2 / d ^ 2)
     prepared: sqrt(8 * 3.1415926535897 * 6.67430e-11 * v1 / 3 - v2 * 2.99792458e8 ^ 2 / v3 ^ 2)
@@ -3714,7 +3714,7 @@ B7:
         - 6.67430e-11 * v1 * v3 ^ 2 / 3 >= v2 * 2.99792458e8 ^ 2
 B9:
     difficulty: hard
-    name: gravitational_wave_power
+    moniker: gravitational_wave_power
     feyn_name: Gravitational wave ratiated power
     raw: -32/5 * G ^ 4 / c ^ 5 * (m1 * m2) ^ 2 * (m1 + m2) / r ^ 5
     prepared: neg(32/5) * 6.67430e-11 ^ 4 / 2.99792458e8 ^ 5 * (v1 * v2) ^ 2 * (v1 + v2) / v3 ^ 5
@@ -3757,7 +3757,7 @@ B9:
         - v3 != 0
 B10:
     difficulty: hard
-    name: relativistic_aberration
+    moniker: relativistic_aberration
     feyn_name: Relativistic aberration
     feyn: arccos((cos(theta2)-v/c)/(1-v/c*cos(theta2)))
     raw: (cos(theta2) - v / c) / (1 - v / c * cos(theta2))
@@ -3792,7 +3792,7 @@ B10:
         - (cos(v1) - v2 / 2.99792458e8) / (1 - v2 / 2.99792458e8 * cos(v1)) <= 1
 B11:
     difficulty: hard
-    name: diffraction_intensity_pattern
+    moniker: diffraction_intensity_pattern
     feyn_name: N-slit diffraction
     raw: I_0 * (sin(alpha / 2) * sin(n * delta / 2) / (alpha / 2 * sin(delta / 2))) ^ 2
     prepared: v1 * (sin(v2 / 2) * sin(v3 * v4 / 2) / (v2 / 2 * sin(v4 / 2))) ^ 2
@@ -3830,7 +3830,7 @@ B11:
     constraints:
 B12:
     difficulty: hard
-    name: charged_plate_potential
+    moniker: charged_plate_potential
     feyn_name: 2.11 Jackson
     raw: q / (4 * pi * epsilon * y ^ 2) * (4 * pi * epsilon * Volt * d - q * d * y ^ 3 / (y ^ 2 - d ^ 2) ^ 2)
     prepared: v1 / (4 * 3.1415926535897 * v2 * v3 ^ 2) * (4 * 3.1415926535897 * v2 * v4 * v5 - v1 * v5 * v3 ^ 3 / (v3 ^ 2 - v5 ^ 2) ^ 2)
@@ -3875,7 +3875,7 @@ B12:
         - v3 != 0
 B13:
     difficulty: hard
-    name: electric_potential_dipole
+    moniker: electric_potential_dipole
     feyn_name: 3.45 Jackson
     raw: 1 / (4 * pi * epsilon) * q / sqrt(r ^ 2 + d ^ 2 - 2 * r * d * cos(alpha))
     prepared: 1 / (4 * 3.1415926535897 * v1) * v2 / sqrt(v3 ^ 2 + v4 ^ 2 - 2 * v3 * v4 * cos(v5))
@@ -3920,7 +3920,7 @@ B13:
         - v3 ^ 2 + v4 ^ 2 - 2 * v3 * v4 * cos(v5) > 0
 B14:
     difficulty: hard
-    name: field_effect_on_dipole
+    moniker: field_effect_on_dipole
     feyn_name: 4.60' Jackson
     raw: Ef * cos(theta) * (-r + d ^ 3 / r ^ 2 * (alpha - 1) / (alpha + 2))
     prepared: v1 * cos(v2) * (neg(v3) + v4 ^ 3 / v3 ^ 2 * (v5 - 1) / (v5 + 2))
@@ -3966,7 +3966,7 @@ B14:
         - v5 != -2
 B15:
     difficulty: hard
-    name: transverse_doppler_shift
+    moniker: transverse_doppler_shift
     feyn_name: 11.38 Jackson
     raw: sqrt(1 - v ^ 2 / c ^ 2) * omega / (1 + v / c * cos(theta))
     prepared: sqrt(1 - v1 ^ 2 / 2.99792458e8 ^ 2) * v2 / (1 + v1 / 2.99792458e8 * cos(v3))
@@ -4005,7 +4005,7 @@ B15:
         - 2.99792458e8 ^ 2 - v1 ^ 2 >= 0
 B16:
     difficulty: hard
-    name: relativistic_hamiltonian
+    moniker: relativistic_hamiltonian
     feyn_name: 8.56 Goldstein
     raw: sqrt((p - q * A_vec) ^ 2 * c ^ 2 + m ^ 2 * c ^ 4) + q * Volt
     prepared: sqrt((v1 - v2 * v3) ^ 2 * 2.99792458e8 ^ 2 + v4 ^ 2 * 2.99792458e8 ^ 4) + v2 * v5
@@ -4054,7 +4054,7 @@ B16:
     constraints:
 B17:
     difficulty: hard
-    name: quantum_oscillator_energy
+    moniker: quantum_oscillator_energy
     feyn_name: 12.80' Goldstein
     raw: 1 / (2 * m) * (p ^ 2 + m ^ 2 * omega ^ 2 * x ^ 2 * (1 + alpha * x / y))
     prepared: 1 / (2 * v1) * (v2 ^ 2 + v1 ^ 2 * v3 ^ 2 * v4 ^ 2 * (1 + v5 * v4 / v6))
@@ -4106,7 +4106,7 @@ B17:
         - v6 != 0
 B19:
     difficulty: hard
-    name: cosmological_pressure
+    moniker: cosmological_pressure
     feyn_name: 15.2.2 Weinberg
     raw: -1 / (8 * pi * G) * (c ^ 4 * k_f / r ^ 2 + H_G ^ 2 * c ^ 2 * (1 - 2 * alpha))
     prepared: -1 / (8 * 3.1415926535897 * 6.67430e-11) * (2.99792458e8 ^ 4 * v1 / v2 ^ 2 + v3 ^ 2 * 2.99792458e8 ^ 2 * (1 - 2 * v4))
@@ -4154,7 +4154,7 @@ B19:
         - v2 != 0
 B20:
     difficulty: hard
-    name: thomson_scattering_cross_section
+    moniker: thomson_scattering_cross_section
     feyn_name: Klein-Nishina (13.132 Schwarz)
     raw: 1 / (4 * pi) * 7.2973525693e-3 ^ 2 * 6.626e-34 ^ 2 / (9.10938356e-31 ^ 2 * c ^ 2) * (omega_0 / omega) ^ 2 * (omega_0 / omega + omega / omega_0 - sin(beta) ^ 2)
     prepared: 1 / (4 * 3.1415926535897) * 7.2973525693e-3 ^ 2 * 6.626e-34 ^ 2 / (9.10938356e-31 ^ 2 * 2.99792458e8 ^ 2) * (v1 / v2) ^ 2 * (v1 / v2 + v2 / v1 - sin(v3) ^ 2)
