@@ -8,6 +8,7 @@ using OrderedCollections
 using Distributions
 using Random
 using Statistics
+using SymPy
 
 include("sample_datasets.jl")
 

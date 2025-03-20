@@ -73,6 +73,45 @@ function round_sympy_consts(eq; sigdigits = 5)
 end
 
 """
+    is_symbolic_solution(orig, cand)
+
+Check if two symbolic expressions represent equivalent solutions according to La Cava 2021.
+Compares an original symbolic expression `orig` with a candidate expression `cand`
+to determine if they are mathematically equivalent, either exactly or up to a constant factor.
+
+# Arguments
+- `orig`: The original SymPy symbolic expression.
+- `cand`: The candidate SymPy symbolic expression to compare against.
+
+# Returns
+- `Bool`: `true` if the expressions are equivalent, `false` otherwise
+
+# Behavior
+Returns `true` if either:
+1. The difference between expressions (`orig - cand`) is a constant, or
+2. The ratio (`orig / cand`) is a non-zero constant
+
+Returns `false` otherwise.
+
+# Examples
+```julia
+using SymPy
+x = symbols("x")
+is_symbolic_solution(2x + 0, x*2)  # returns true
+is_symbolic_solution(2x, 4x)   # returns true
+is_symbolic_solution(2x^2, 4x)   # returns false
+```
+"""
+function is_symbolic_solution(orig, cand)
+    eq_difff = (orig - cand)
+    eq_difff.o.is_constant() && return true
+    eq_ratio = orig / cand
+    is_constant = eq_ratio.o.is_constant()
+    !iszero(eq_ratio) && !isnothing(is_constant) && is_constant && return true
+    return false
+end
+
+"""
     get_nary_compl(expr::String)
     get_nary_compl(expr)
 
