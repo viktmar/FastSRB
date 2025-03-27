@@ -44,3 +44,6 @@ These should be:
 - **Functionally identical** to the ground-truth expression.
 - **Concise**: not contain more than 20% more operations or operands than the reference expression, i.e., the original one simplified by SymPy (first expression in the "accept" list).
 
+## Funding
+
+This work was funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) within the Priority Programme SPP 2331: "Machine Learning in Chemical Engineering" - project no. 466528284 - HE 6077/14-1 and RI 2482/10-1
