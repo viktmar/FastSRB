@@ -38,80 +38,6 @@ function round_equation_string(expr::Expr; sigdigits=3)
 end
 
 """
-    round_sympy_consts(eq; sigdigits = 5)
-
-Rounds all numerical constants in a SymPy expression to a specified number of significant digits.
-
-# Arguments
-- `eq`: A SymPy expression (symbolic equation) containing numerical constants to be rounded.
-- `sigdigits`: An optional integer specifying the number of significant digits to round to (default is 5).
-
-# Returns
-- A new SymPy expression with all numerical constants rounded to the specified significant digits.
-
-# Description
-This function iterates through all atomic elements in the provided SymPy expression `eq`. For each
-element that is a non-zero number, it evaluates the number to a float (using `evalf`), calculates
-the appropriate precision based on the number's magnitude, and rounds it to `sigdigits` significant
-digits. The original number in the expression is then substituted with its rounded value.
-
-# Examples
-```julia
-using SymPy
-x = symbols("x")
-eq = SymPy.sympify("0.000987654321 + 1.23456789*x")
-FastSRB.round_sympy_consts(eq, sigdigits=3) # Returns an expression equivalent to 1.23*x + 0.000988
-```
-"""
-function round_sympy_consts(eq; sigdigits = 5)
-    for o in eq.atoms()
-        if o.is_Number && o != 0
-            eq = eq.subs(o, o.evalf().round(sigdigits - 1 - floor(log10(abs(o.evalf())))))
-        end
-    end
-    return eq
-end
-
-"""
-    is_symbolic_solution(orig, cand)
-
-Check if two symbolic expressions represent equivalent solutions according to La Cava 2021.
-Compares an original symbolic expression `orig` with a candidate expression `cand`
-to determine if they are mathematically equivalent, either exactly or up to a constant factor.
-
-# Arguments
-- `orig`: The original SymPy symbolic expression.
-- `cand`: The candidate SymPy symbolic expression to compare against.
-
-# Returns
-- `Bool`: `true` if the expressions are equivalent, `false` otherwise
-
-# Behavior
-Returns `true` if either:
-1. The difference between expressions (`orig - cand`) is a constant, or
-2. The ratio (`orig / cand`) is a non-zero constant
-
-Returns `false` otherwise.
-
-# Examples
-```julia
-using SymPy
-x = symbols("x")
-is_symbolic_solution(2x + 0, x*2)  # returns true
-is_symbolic_solution(2x, 4x)   # returns true
-is_symbolic_solution(2x^2, 4x)   # returns false
-```
-"""
-function is_symbolic_solution(orig, cand)
-    eq_difff = (orig - cand)
-    eq_difff.o.is_constant() && return true
-    eq_ratio = orig / cand
-    is_constant = eq_ratio.o.is_constant()
-    !iszero(eq_ratio) && !isnothing(is_constant) && is_constant && return true
-    return false
-end
-
-"""
     get_nary_compl(expr::String)
     get_nary_compl(expr)
 
@@ -727,3 +653,76 @@ function sample_points(
     return arr
 end
 
+# """
+#     round_sympy_consts(eq; sigdigits = 5)
+#
+# Rounds all numerical constants in a SymPy expression to a specified number of significant digits.
+#
+# # Arguments
+# - `eq`: A SymPy expression (symbolic equation) containing numerical constants to be rounded.
+# - `sigdigits`: An optional integer specifying the number of significant digits to round to (default is 5).
+#
+# # Returns
+# - A new SymPy expression with all numerical constants rounded to the specified significant digits.
+#
+# # Description
+# This function iterates through all atomic elements in the provided SymPy expression `eq`. For each
+# element that is a non-zero number, it evaluates the number to a float (using `evalf`), calculates
+# the appropriate precision based on the number's magnitude, and rounds it to `sigdigits` significant
+# digits. The original number in the expression is then substituted with its rounded value.
+#
+# # Examples
+# ```julia
+# using SymPy
+# x = symbols("x")
+# eq = SymPy.sympify("0.000987654321 + 1.23456789*x")
+# FastSRB.round_sympy_consts(eq, sigdigits=3) # Returns an expression equivalent to 1.23*x + 0.000988
+# ```
+# """
+# function round_sympy_consts(eq; sigdigits = 5)
+#     for o in eq.atoms()
+#         if o.is_Number && o != 0
+#             eq = eq.subs(o, o.evalf().round(sigdigits - 1 - floor(log10(abs(o.evalf())))))
+#         end
+#     end
+#     return eq
+# end
+#
+# """
+#     is_symbolic_solution(orig, cand)
+#
+# Check if two symbolic expressions represent equivalent solutions according to La Cava 2021.
+# Compares an original symbolic expression `orig` with a candidate expression `cand`
+# to determine if they are mathematically equivalent, either exactly or up to a constant factor.
+#
+# # Arguments
+# - `orig`: The original SymPy symbolic expression.
+# - `cand`: The candidate SymPy symbolic expression to compare against.
+#
+# # Returns
+# - `Bool`: `true` if the expressions are equivalent, `false` otherwise
+#
+# # Behavior
+# Returns `true` if either:
+# 1. The difference between expressions (`orig - cand`) is a constant, or
+# 2. The ratio (`orig / cand`) is a non-zero constant
+#
+# Returns `false` otherwise.
+#
+# # Examples
+# ```julia
+# using SymPy
+# x = symbols("x")
+# is_symbolic_solution(2x + 0, x*2)  # returns true
+# is_symbolic_solution(2x, 4x)   # returns true
+# is_symbolic_solution(2x^2, 4x)   # returns false
+# ```
+# """
+# function is_symbolic_solution(orig, cand)
+#     eq_difff = (orig - cand)
+#     eq_difff.o.is_constant() && return true
+#     eq_ratio = orig / cand
+#     is_constant = eq_ratio.o.is_constant()
+#     !iszero(eq_ratio) && !isnothing(is_constant) && is_constant && return true
+#     return false
+# end
