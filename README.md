@@ -30,14 +30,12 @@ This YAML file serves as the foundation for benchmarking, enabling users to eval
 
 The callback mechanism is a standout feature of FastSRB, enhancing efficiency in SR benchmarking.
 FastSRB does not provide a ready-made callback for all libraries, as implementations differ.
-However, many convenience functions and an example for the TiSR package are provided, which streamline the development of a callback for other SR packages.
+However, many convenience functions and an [example for the TiSR](example/TiSR.jl) are provided, which streamline the development of a callback for other SR packages.
 
 During the search process, the callback should be invoked periodically, e.g., every 15 seconds.
 It should evaluate candidate expressions that meet initial criteria (e.g., low loss on test data).
 These candidates are then simplified, canonicalized, and have their parameters rounded to a set number of significant digits.
 If a match is found, the search terminates immediately, marking the benchmark as successful.
-
-An example implementation is provided, showcasing how the callback function as used for with [TiSR]().
 
 ## Contributing New Acceptable Expressions
 
