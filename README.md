@@ -37,6 +37,11 @@ These should be:
 - **Functionally identical** to the ground-truth expression.
 - **Concise**: not contain more than 20% more operators or operands than the reference expression using binary operators, i.e., the original one simplified by SymPy (first expression in the "accept" list).
 
+## Python
+
+There is currently no Python package that implements this functionality, nor are there plans to create one.
+However, the core of the benchmark is the programming language agnostic [YAML file](src/expressions.yaml), which allows use in any programming language.
+
 ## Funding
 
 This work was funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) within the Priority Programme SPP 2331: "Machine Learning in Chemical Engineering" - project no. 466528284 - HE 6077/14-1 and RI 2482/10-1
