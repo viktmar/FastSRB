@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15469873.svg)](https://doi.org/10.5281/zenodo.15469873)
 
 **FastSRB** (Fast Symbolic Regression Benchmark) is a symbolic regression (SR) benchmarking library designed to improve the efficiency and pragmatism of ground-truth rediscovery benchmarks.
-For detailed information, please refer to [this publication]().
+For detailed information, please refer to [this publication](https://arxiv.org/abs/2508.14481).
 Unlike other benchmarks that prioritize recovering a single "correct" expression form or rely soley on SymPy, FastSRB redefines success by introducing a curated list of acceptable expressions for each benchmark expression.
 Those are functionally identical yet concise variants.
 It also tackles the computational inefficiency of fixed-budget searches by allowing to implement a callback mechanism for early termination, halting the search once an acceptable expression is found.
